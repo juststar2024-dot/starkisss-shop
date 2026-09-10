@@ -3887,3 +3887,213 @@ h1 span {
     visibility: visible;
     transform: translateY(0) scale(1);
 }
+
+/* ================= LIKES MASCOT ================= */
+
+.likes-mascot {
+    position: fixed;
+
+    right: 25px;
+    bottom: 20px;
+
+    width: 350px;
+
+    cursor: pointer;
+    text-align: center;
+
+    z-index: 1000;
+
+    /* Изначально Старки спрятан */
+    opacity: 0;
+    transform: translateY(120px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+
+/* ================= СТАРКИ ================= */
+
+.likes-mascot img {
+    width: 360px;
+    height: auto;
+
+    display: block;
+    margin: 0 auto;
+
+    /* Покачивание + редкий прыжок + свечение */
+    animation: starki-idle 4s ease-in-out infinite;
+
+    transition: filter 0.25s ease;
+}
+
+
+/* Покачивание, подпрыгивание и свечение */
+
+@keyframes starki-idle {
+
+    /* Начало */
+    0% {
+        transform: rotate(-2deg) translateY(0);
+
+        filter:
+            drop-shadow(0 0 6px rgba(130, 190, 255, 0.5))
+            drop-shadow(0 0 14px rgba(160, 100, 255, 0.3));
+    }
+
+    /* Покачнулся */
+    20% {
+        transform: rotate(2deg) translateY(-5px);
+
+        filter:
+            drop-shadow(0 0 10px rgba(130, 190, 255, 0.7))
+            drop-shadow(0 0 22px rgba(160, 100, 255, 0.45));
+    }
+
+    /* Вернулся */
+    40% {
+        transform: rotate(-1deg) translateY(0);
+
+        filter:
+            drop-shadow(0 0 8px rgba(130, 190, 255, 0.6))
+            drop-shadow(0 0 18px rgba(160, 100, 255, 0.4));
+    }
+
+    /* Ещё покачивание */
+    60% {
+        transform: rotate(2deg) translateY(-4px);
+
+        filter:
+            drop-shadow(0 0 12px rgba(130, 190, 255, 0.8))
+            drop-shadow(0 0 26px rgba(160, 100, 255, 0.5));
+    }
+
+    /* ПОДПРЫГНУЛ */
+    70% {
+        transform: rotate(-1deg) translateY(-18px);
+
+        filter:
+            drop-shadow(0 0 16px rgba(130, 190, 255, 0.9))
+            drop-shadow(0 0 32px rgba(160, 100, 255, 0.65));
+    }
+
+    /* Приземлился */
+    78% {
+        transform: rotate(1deg) translateY(0);
+
+        filter:
+            drop-shadow(0 0 10px rgba(130, 190, 255, 0.7))
+            drop-shadow(0 0 20px rgba(160, 100, 255, 0.4));
+    }
+
+    /* Спокойно стоит */
+    100% {
+        transform: rotate(-2deg) translateY(0);
+
+        filter:
+            drop-shadow(0 0 6px rgba(130, 190, 255, 0.5))
+            drop-shadow(0 0 14px rgba(160, 100, 255, 0.3));
+    }
+}
+
+
+/* ================= ПОЯВЛЕНИЕ ================= */
+
+.likes-mascot.show {
+    opacity: 1;
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* ================= ФРАЗА ================= */
+
+.likes-message {
+    position: absolute;
+
+    right: 270px;
+    top: 20px;
+
+    width: 300px;
+
+    padding: 16px 20px;
+
+    background: white;
+    color: #3d2b68;
+
+    border: 2px solid #9b7cff;
+    border-radius: 18px;
+
+    font-size: 18px;
+    line-height: 1.3;
+
+    box-shadow: 0 5px 20px rgba(80, 50, 130, 0.18);
+
+    opacity: 0;
+
+    transform: translateX(15px) scale(0.95);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* Фраза появляется при наведении */
+
+.likes-mascot:hover .likes-message {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+
+/* Хвостик облачка */
+
+.likes-message::after {
+    content: "";
+
+    position: absolute;
+
+    right: -10px;
+    top: 35px;
+
+    width: 18px;
+    height: 18px;
+
+    background: white;
+
+    border-top: 2px solid #9b7cff;
+    border-right: 2px solid #9b7cff;
+
+    transform: rotate(45deg);
+}
+/* ================= РЕАКЦИЯ НА НАВЕДЕНИЕ ================= */
+
+.likes-mascot:hover img {
+    animation: starki-hover 1.2s ease-in-out infinite;
+}
+
+@keyframes starki-hover {
+
+    0%, 100% {
+        transform: translateY(0) scale(1.04);
+
+        filter:
+            drop-shadow(0 0 10px rgba(130, 190, 255, 0.7))
+            drop-shadow(0 0 22px rgba(160, 100, 255, 0.45));
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.07);
+
+        filter:
+            drop-shadow(0 0 16px rgba(130, 190, 255, 0.9))
+            drop-shadow(0 0 30px rgba(160, 100, 255, 0.6));
+    }
+}

@@ -261,7 +261,7 @@ const thanksSpeech = document.querySelector("#thanksSpeech");
 if (thanksMascot && thanksSpeech) {
 
     const thanksPhrases = [
-        "Эй! Не тыкайся в меня! ⭐",
+        "Эй! Не тыкай в меня! ⭐",
         "О, салют! :3",
         "Ты меня поймал...",
         "Я вообще-то занят сиянием!",
@@ -274,6 +274,10 @@ if (thanksMascot && thanksSpeech) {
         "Псс... там новинки появились 👀",
         "Я тут главный по звёздам!",
         "Что? У меня что-то на лице?",
+        "（｡>‿‿<｡ ）",
+        "Вы не видели Фелия?",
+        "Фларри, перестань! ≧◡≦",
+        "Ирид? Не знаю, кто это...",
         "Ладно, можешь ещё раз навести :3"
     ];
 
@@ -297,3 +301,14 @@ if (thanksMascot && thanksSpeech) {
         thanksSpeech.textContent = thanksPhrases[randomPhrase];
     });
 }
+// ================= LIKES MASCOT =================
+
+const likesMascot = document.querySelector(".likes-mascot");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+        likesMascot.classList.add("show");
+    } else {
+        likesMascot.classList.remove("show");
+    }
+});
