@@ -255,3 +255,45 @@ if (starki) {
     });
 
 }
+const thanksMascot = document.querySelector(".thanks-mascot");
+const thanksSpeech = document.querySelector("#thanksSpeech");
+
+if (thanksMascot && thanksSpeech) {
+
+    const thanksPhrases = [
+        "Эй! Не тыкайся в меня! ⭐",
+        "О, салют! :3",
+        "Ты меня поймал...",
+        "Я вообще-то занят сиянием!",
+        "Хи-хи, спасибо за визит! ✨",
+        "Звёзды говорят, что ты классный.",
+        "Ммм... а ты точно не за заказом?",
+        "Старки одобряет! ✦",
+        "*подмигивает*",
+        "Не забудь заглянуть в магазин!",
+        "Псс... там новинки появились 👀",
+        "Я тут главный по звёздам!",
+        "Что? У меня что-то на лице?",
+        "Ладно, можешь ещё раз навести :3"
+    ];
+
+    let lastPhrase = -1;
+
+    thanksMascot.addEventListener("mouseenter", () => {
+
+        let randomPhrase;
+
+        do {
+            randomPhrase = Math.floor(
+                Math.random() * thanksPhrases.length
+            );
+        } while (
+            randomPhrase === lastPhrase &&
+            thanksPhrases.length > 1
+        );
+
+        lastPhrase = randomPhrase;
+
+        thanksSpeech.textContent = thanksPhrases[randomPhrase];
+    });
+}

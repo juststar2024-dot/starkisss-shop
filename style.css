@@ -3586,3 +3586,304 @@ h1 span {
     color: #fff;
     text-shadow: 0 0 12px #ffe47766;
 }
+.payment-intro {
+    margin: 20px 0;
+    color: #aaa8c0;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.payment-intro strong {
+    color: #d9d6ed;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.payment-method {
+    padding: 18px 16px;
+    border: 1px solid #ffffff12;
+    border-radius: 18px;
+    background: #ffffff05;
+    transition: background .25s ease,
+                border-color .25s ease,
+                transform .25s ease;
+}
+
+.payment-method:hover {
+    background: #ffffff09;
+    border-color: #a855f733;
+    transform: translateY(-3px);
+}
+
+.payment-method span {
+    display: block;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.payment-method small {
+    color: #85839b;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* ДЕДЛАЙН */
+
+.deadline-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 25px;
+    padding: 20px 22px;
+    border: 1px solid #ffe47740;
+    border-radius: 20px;
+    background: #ffe4770b;
+    box-shadow: 0 0 30px #ffe47708;
+}
+
+.deadline-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: #ffe47712;
+    font-size: 25px;
+}
+
+.deadline-label {
+    margin: 0 0 5px;
+    color: #ffe477;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.deadline-time {
+    margin: 0 0 6px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.deadline-text {
+    margin: 0;
+    color: #aaa8c0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .deadline-box {
+        align-items: flex-start;
+        padding: 18px;
+    }
+
+    .deadline-time {
+        font-size: 18px;
+    }
+}
+/* СОЦИАЛЬНЫЕ СЕТИ */
+
+.socials-intro {
+    margin: 20px 0 25px;
+    color: #aaa8c0;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.socials-group {
+    margin-top: 25px;
+}
+
+.socials-group-title {
+    margin: 0 0 14px;
+    color: #ffe477;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.social-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 75px;
+    padding: 16px 18px;
+    border: 1px solid #ffffff12;
+    border-radius: 18px;
+    background: #ffffff05;
+    text-decoration: none;
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.social-card:hover {
+    background: #ffffff09;
+    border-color: #a855f733;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px #8b5cf615;
+}
+
+.social-name {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.social-link {
+    margin-top: 6px;
+    color: #85839b;
+    font-size: 12px;
+    transition: color .25s ease;
+}
+
+.social-card:hover .social-link {
+    color: #ffe477;
+}
+
+/* МАРКЕТПЛЕЙСЫ */
+
+.marketplaces-group {
+    margin-top: 32px;
+    padding-top: 25px;
+    border-top: 1px solid #ffffff0d;
+}
+
+.marketplace-card {
+    border-color: #ffe47718;
+    background: #ffe47705;
+}
+
+.marketplace-card:hover {
+    border-color: #ffe47740;
+    background: #ffe4770a;
+}
+
+.coming-soon {
+    cursor: default;
+    opacity: .55;
+}
+
+.coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+    background: #ffe47705;
+    border-color: #ffe47718;
+}
+
+.coming-soon .social-link {
+    color: #ffe477;
+}
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+
+@media (max-width: 600px) {
+    .socials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.telegram-support-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 15px 26px;
+
+    color: #fff;
+    background: #8b5cf6;
+
+    border: 1px solid #a855f6;
+    border-radius: 100px;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+
+    box-shadow: 0 8px 30px #8b5cf633;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.telegram-support-button:hover {
+    color: #fff;
+    background: #a855f6;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px #a855f655;
+}
+.thanks-speech {
+    position: absolute;
+    left: 90%;
+    top: 5px;
+
+    width: 220px;
+    padding: 14px 18px;
+
+    color: white;
+    background: #17132b;
+    border: 1px solid #a855f655;
+    border-radius: 18px;
+
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(.95);
+    transition:
+        opacity .25s ease,
+        transform .25s ease,
+        visibility .25s ease;
+
+    pointer-events: none;
+    box-shadow: 0 10px 35px #00000044;
+}
+
+/* маленький хвостик облачка */
+.thanks-speech::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    bottom: -8px;
+
+    width: 14px;
+    height: 14px;
+
+    background: #17132b;
+    border-right: 1px solid #a855f655;
+    border-bottom: 1px solid #a855f655;
+
+    transform: rotate(45deg);
+}
+
+.thanks-mascot:hover .thanks-speech {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
