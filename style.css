@@ -3274,3 +3274,187 @@ h1 span {
 
     transform: rotate(20deg) scale(1.15);
 }
+/* ================================================= */
+/*                THANKS MASCOT                    */
+/* ================================================= */
+
+.thanks-mascot {
+    position: fixed;
+
+    left: 35px;
+    bottom: 30px;
+
+    width: 190px;
+    height: 190px;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        thanksAppear 1s ease-out,
+        thanksFloat 3s ease-in-out 1s infinite;
+
+    cursor: pointer;
+}
+
+
+/* сама картинка */
+
+.thanks-mascot img {
+    width: 170px;
+    height: 170px;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        drop-shadow(0 8px 20px #00000035);
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* ================= ПОЯВЛЕНИЕ ================= */
+
+@keyframes thanksAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(70px) scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ================= ПАРЕНИЕ ================= */
+
+@keyframes thanksFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-1.5deg);
+    }
+
+}
+
+
+/* ================= НАВЕДЕНИЕ ================= */
+
+.thanks-mascot:hover img {
+    transform:
+        translateY(-10px)
+        rotate(-4deg)
+        scale(1.05);
+
+    filter:
+        drop-shadow(0 12px 25px #8b5cf655);
+}
+
+
+/* ================= ИСКОРКИ ================= */
+
+.thanks-spark {
+    position: absolute;
+
+    color: #ffe477;
+
+    font-size: 18px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        thanksSpark 3s ease-in-out infinite;
+}
+
+.spark-1 {
+    top: 25px;
+    right: 15px;
+
+    animation-delay: 0.5s;
+}
+
+.spark-2 {
+    top: 75px;
+    left: 5px;
+
+    font-size: 12px;
+
+    animation-delay: 1.5s;
+}
+
+.spark-3 {
+    bottom: 25px;
+    right: 20px;
+
+    font-size: 14px;
+
+    animation-delay: 2.3s;
+}
+
+@keyframes thanksSpark {
+
+    0%, 65%, 100% {
+        opacity: 0;
+
+        transform:
+            scale(0.4)
+            rotate(0deg);
+    }
+
+    75% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(20deg);
+    }
+
+    88% {
+        opacity: 0.4;
+
+        transform:
+            scale(0.7)
+            rotate(45deg);
+    }
+
+}
+
+
+/* ================= МОБИЛЬНАЯ ВЕРСИЯ ================= */
+
+@media (max-width: 700px) {
+
+    .thanks-mascot {
+        left: 15px;
+        bottom: 15px;
+
+        width: 130px;
+        height: 130px;
+    }
+
+    .thanks-mascot img {
+        width: 115px;
+        height: 115px;
+    }
+
+    .thanks-spark {
+        font-size: 14px;
+    }
+
+}
