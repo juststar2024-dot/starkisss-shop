@@ -3458,3 +3458,131 @@ h1 span {
     }
 
 }
+/* ================= DELIVERY ================= */
+
+.delivery-warning {
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+    padding: 17px 20px;
+
+    border: 1px solid #ffe47740;
+    border-radius: 16px;
+
+    background: #ffe4770b;
+
+    color: #c8c7df;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.delivery-warning strong {
+    color: #ffe477;
+}
+
+
+/* отдельный способ доставки */
+
+.delivery-option {
+    margin-top: 15px;
+
+    padding: 22px;
+
+    border: 1px solid #ffffff12;
+    border-radius: 20px;
+
+    background: #ffffff05;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.delivery-option:hover {
+    background: #ffffff09;
+
+    border-color: #a855f733;
+
+    transform: translateX(4px);
+}
+
+
+/* название + цена */
+
+.delivery-option-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 12px;
+}
+
+.delivery-option-title span {
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delivery-option-title strong {
+    color: #ffe477;
+
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+
+/* текст */
+
+.delivery-option p {
+    margin: 0 0 10px;
+
+    color: #aaa8c0;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+.delivery-option p:last-child {
+    margin-bottom: 0;
+}
+
+.delivery-option p strong {
+    color: #d9d6ed;
+}
+
+
+/* мобильная версия */
+
+@media (max-width: 600px) {
+
+    .delivery-option {
+        padding: 18px;
+    }
+
+    .delivery-option-title {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+}
+.delivery-link {
+    color: #ffe477;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .25s ease, text-shadow .25s ease;
+}
+
+.delivery-link:hover {
+    color: #fff;
+    text-shadow: 0 0 12px #ffe47766;
+}
