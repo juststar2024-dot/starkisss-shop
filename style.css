@@ -4097,3 +4097,549 @@ h1 span {
             drop-shadow(0 0 30px rgba(160, 100, 255, 0.6));
     }
 }
+/* ================= NEW PRODUCT IMAGE + VIDEO HOVER ================= */
+
+.new-product-image {
+    width: 100%;
+    aspect-ratio: 9 / 12;
+    position: relative;
+    overflow: visible;
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+}
+
+/* Обычное видео */
+
+.new-product-image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+
+    transition:
+        width 0.45s ease,
+        height 0.45s ease,
+        transform 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+/* Видео при наведении */
+
+.new-product-image:hover {
+    z-index: 100;
+}
+
+/* ================= PRODUCT GALLERY ================= */
+
+.new-product-photo {
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+.new-product-photo.active-media {
+    display: block;
+}
+
+
+/* Превью */
+
+.new-product-photos {
+    position: absolute;
+
+    bottom: 12px;
+    left: 12px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 10;
+}
+
+.media-thumbnail {
+    width: 55px;
+    height: 55px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 2px solid white;
+    border-radius: 10px;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        border 0.2s ease;
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.08);
+}
+
+.media-thumbnail.active {
+    border: 3px solid #9b7cff;
+    transform: scale(1.05);
+}
+
+/* Карточки не обрезают видео */
+
+.new-products {
+    overflow: visible;
+}
+
+.new-product-card {
+    overflow: visible;
+    position: relative;
+}
+
+.new-product-card:hover {
+    z-index: 100;
+}
+/* ================= PRODUCT PHOTOS ================= */
+
+.new-product-photos {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 5;
+}
+
+.new-product-photos img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    border: 2px solid white;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.new-product-photos img:hover {
+    transform: scale(1.1);
+}
+/* ================= PRODUCT MEDIA GALLERY ================= */
+
+.new-product-image {
+    position: relative;
+}
+
+/* Фото по умолчанию скрыты */
+/* ================= PRODUCT GALLERY ================= */
+
+.new-product-image {
+    width: 100%;
+    aspect-ratio: 9 / 12;
+    position: relative;
+    overflow: visible;
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+}
+
+/* Главное видео и главное фото */
+
+.new-product-video,
+.new-product-photo.active-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Всё неактивное прячем */
+
+.new-product-video:not(.active-media),
+.new-product-photo:not(.active-media) {
+    display: none;
+}
+
+
+/* ================= ПРЕВЬЮ ================= */
+
+.new-product-photos {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 20;
+}
+
+.media-thumbnail {
+    width: 55px;
+    height: 55px;
+
+    padding: 0;
+    overflow: hidden;
+
+    border: 2px solid white;
+    border-radius: 10px;
+
+    background: white;
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        border 0.2s ease;
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.08);
+}
+
+.media-thumbnail.active {
+    border: 3px solid #9b7cff;
+    transform: scale(1.05);
+}
+
+
+/* ================= ВЫЛЕЗАНИЕ ВИДЕО ================= */
+
+.new-product-image:hover {
+    z-index: 100;
+}
+
+.new-product-card:hover {
+    z-index: 100;
+}
+
+.new-products {
+    overflow: visible;
+}
+
+
+/* Увеличиваем ТОЛЬКО главное видео */
+
+.new-product-image:hover > .new-product-video.active-media {
+    width: 240px;
+    height: 427px;
+
+    object-fit: contain;
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    transform: translate(-50%, -8%);
+
+    background: black;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(150, 100, 255, 0.35);
+
+    z-index: 1000;
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Выбранное превью */
+.media-thumbnail.active {
+    border: 3px solid #9b7cff;
+    transform: scale(1.05);
+}
+/* =========================================
+   ⭐ FINAL NEW PRODUCT GALLERY FIX
+   ========================================= */
+
+.new-product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 12;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Главное видео */
+.new-product-image > .new-product-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Активное видео */
+.new-product-image > .new-product-video.active-media {
+    display: block;
+}
+
+/* Фотографии */
+.new-product-image > .new-product-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 20px 20px 0 0;
+}
+
+/* Активная фотография */
+.new-product-image > .new-product-photo.active-media {
+    display: block;
+}
+
+
+/* =========================================
+   ПРЕВЬЮ
+   ========================================= */
+
+.new-product-photos {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 20;
+}
+
+.media-thumbnail {
+    width: 55px;
+    height: 55px;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 2px solid white;
+    border-radius: 10px;
+
+    background: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        border 0.2s ease;
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.08);
+}
+
+.media-thumbnail.active {
+    border: 3px solid #9b7cff;
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   НЕ ДАЁМ ВИДЕО ВЫЛЕЗАТЬ ИЗ КАРТОЧКИ
+   ========================================= */
+
+/* Убираем старый эффект увеличения видео */
+.new-product-image:hover video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    transform: none;
+    object-fit: cover;
+    z-index: 1;
+}
+
+
+/* Превью всегда поверх */
+.new-product-image .new-product-photos {
+    z-index: 50;
+}
+/* =========================================
+   ФИНАЛЬНОЕ ИСПРАВЛЕНИЕ ГАЛЕРЕИ
+   ========================================= */
+
+/* Видео больше НИКОГДА не увеличивается при наведении */
+.new-product-image:hover > .new-product-video.active-media {
+    width: 100% !important;
+    height: 100% !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    transform: none !important;
+
+    object-fit: cover !important;
+
+    position: absolute !important;
+
+    z-index: 1 !important;
+
+    background: transparent !important;
+
+    box-shadow: none !important;
+}
+
+
+/* Фотографии ведут себя так же */
+.new-product-image > .new-product-photo.active-media {
+    width: 100% !important;
+    height: 100% !important;
+
+    left: 0 !important;
+    top: 0 !important;
+
+    transform: none !important;
+
+    position: absolute !important;
+
+    object-fit: cover !important;
+
+    z-index: 1 !important;
+}
+
+
+/* Миниатюры ВСЕГДА находятся поверх видео */
+.new-product-image .new-product-photos {
+    position: absolute !important;
+
+    z-index: 9999 !important;
+}
+
+
+/* Сами кнопки миниатюр тоже поверх */
+.new-product-image .media-thumbnail {
+    position: relative !important;
+
+    z-index: 10000 !important;
+
+    pointer-events: auto !important;
+}
+/* =========================================
+   МЕДИА БЕЗ ОБРЕЗКИ
+   ========================================= */
+
+.new-product-image > .new-product-video.active-media,
+.new-product-image > .new-product-photo.active-media {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #171124 !important;
+}
+/* =========================================
+   РАЗМЫТЫЙ ФОН ДЛЯ ВЕРТИКАЛЬНЫХ МЕДИА
+   ========================================= */
+
+.new-product-image {
+    position: relative;
+    overflow: hidden;
+    background: #171124;
+}
+
+/* Само видео и фото */
+.new-product-image > .new-product-video.active-media,
+.new-product-image > .new-product-photo.active-media {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+
+    position: absolute !important;
+    z-index: 2 !important;
+
+    background: transparent !important;
+}
+/* =========================================
+   ФИКС РАСКЛАДКИ КАРТОЧЕК НОВИНОК
+   ========================================= */
+
+.new-products {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+    align-items: start !important;
+}
+
+.new-product-card {
+    height: auto !important;
+    align-self: start !important;
+}
+
+.new-product-image {
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
+}
+
+.new-product-info {
+    height: auto !important;
+    min-height: 0 !important;
+}
