@@ -5088,3 +5088,29 @@ h1 span {
 .handmade-buttons {
     margin-top: 0;
 }
+/* ================= ЗВЁЗДЫ ПОЗАДИ КАРТОЧЕК ================= */
+
+.handmade-products {
+    position: relative;
+    z-index: 2;
+}
+
+.handmade-card {
+    position: relative;
+    z-index: 3;
+}
+
+/* Всё содержимое карточек выше фоновых эффектов */
+.handmade-card > * {
+    position: relative;
+    z-index: 4;
+}
+
+/* Но галерея остаётся отдельным слоем */
+.handmade-card .handmade-image {
+    z-index: 5;
+}
+
+.handmade-card .handmade-info {
+    z-index: 5;
+}
