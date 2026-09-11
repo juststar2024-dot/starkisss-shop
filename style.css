@@ -4740,3 +4740,351 @@ h1 span {
 .order-button:active {
     transform: translateY(-1px) scale(0.98);
 }
+/* =========================================
+   ГАЛЕРЕЯ ТОВАРОВ В НАЛИЧИИ
+   ========================================= */
+
+.handmade-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.handmade-gallery {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Слайды */
+
+.handmade-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.handmade-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+.handmade-slide img {
+    transition: opacity 0.7s ease;
+}
+/* Фотографии */
+
+.handmade-slide img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+
+    position: relative;
+    z-index: 2;
+}
+
+/* Размытый фон */
+
+.handmade-slide::before {
+    content: "";
+
+    position: absolute;
+    inset: -25px;
+
+    background-image: var(--handmade-bg);
+    background-size: cover;
+    background-position: center;
+
+    filter: blur(25px);
+
+    transform: scale(1.15);
+
+    opacity: 0.45;
+
+    z-index: 1;
+}
+
+/* Стрелки */
+
+.handmade-gallery-prev,
+.handmade-gallery-next {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(20, 15, 40, 0.65);
+    color: white;
+
+    font-size: 28px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.handmade-gallery-prev {
+    left: 10px;
+}
+
+.handmade-gallery-next {
+    right: 10px;
+}
+
+.handmade-gallery-prev:hover,
+.handmade-gallery-next:hover {
+    background: rgba(100, 70, 180, 0.9);
+
+    transform: translateY(-50%) scale(1.1);
+
+    box-shadow:
+        0 0 15px rgba(150, 100, 255, 0.5);
+}
+
+/* Точки */
+
+.handmade-gallery-dots {
+    position: absolute;
+
+    left: 50%;
+    bottom: 10px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 7px;
+
+    z-index: 10;
+}
+
+.handmade-gallery-dot {
+    width: 8px;
+    height: 8px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.handmade-gallery-dot.active {
+    transform: scale(1.35);
+
+    background: white;
+
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Чтобы бейдж был поверх галереи */
+
+.handmade-image .handmade-badge {
+    z-index: 20;
+}
+
+/* =========================================
+   КНОПКИ ТОВАРА
+   ========================================= */
+
+.handmade-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+.handmade-buttons button,
+.handmade-buttons a,
+.handmade-unavailable {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+
+    padding: 8px 13px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+}
+
+/* Кнопка "Узнать подробнее" */
+
+.handmade-buttons button {
+    border: none;
+
+    cursor: pointer;
+
+    font: inherit;
+}
+
+/* WB / Ozon */
+
+.handmade-buttons a {
+    cursor: pointer;
+}
+
+/* Пока площадка недоступна */
+
+.handmade-unavailable {
+    opacity: 0.55;
+
+    cursor: default;
+}
+/* =========================================
+   КНОПКИ ТОВАРОВ — STARKISSS SHOP
+   ========================================= */
+
+/* ================= HANDMADE BUTTONS ================= */
+
+.handmade-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* Общий вид всех кнопок */
+.handmade-buttons a,
+.handmade-buttons button,
+.handmade-unavailable {
+    min-height: 38px;
+    padding: 9px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+/* ================= УЗНАТЬ ПОДРОБНЕЕ ================= */
+
+.handmade-buttons a[href*="t.me"] {
+    background: linear-gradient(135deg, #ffd84d, #ffbd32);
+    color: #30220a;
+    border: none;
+    box-shadow: 0 5px 15px rgba(255, 193, 50, 0.25);
+}
+
+.handmade-buttons a[href*="t.me"]:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(255, 193, 50, 0.4);
+}
+
+/* ================= WILDBERRIES ================= */
+
+.handmade-buttons a[href*="wildberries"] {
+    background: linear-gradient(135deg, #b86cff, #8f45e8);
+    color: white;
+    border: none;
+    box-shadow: 0 5px 15px rgba(150, 75, 235, 0.2);
+}
+
+.handmade-buttons a[href*="wildberries"]:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(150, 75, 235, 0.4);
+}
+
+/* ================= OZON ================= */
+
+.handmade-buttons a[href*="ozon"] {
+    background: linear-gradient(135deg, #62b7ff, #398ce5);
+    color: white;
+    border: none;
+    box-shadow: 0 5px 15px rgba(60, 145, 230, 0.2);
+}
+
+.handmade-buttons a[href*="ozon"]:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(60, 145, 230, 0.4);
+}
+
+/* ================= СКОРО ================= */
+
+.handmade-unavailable {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: default;
+}
+
+/* =========================================
+   WB / OZON — СКОРО
+   ========================================= */
+
+.handmade-unavailable {
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.5);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    cursor: default;
+}
+/* Цена над кнопками */
+.handmade-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.handmade-bottom strong {
+    display: block;
+    font-size: 24px;
+}
+
+.handmade-buttons {
+    margin-top: 0;
+}

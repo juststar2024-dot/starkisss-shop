@@ -574,3 +574,115 @@ document.querySelectorAll(".service-gallery .gallery-slide").forEach(slide => {
     }
 
 });
+// =========================================
+// ГАЛЕРЕЯ ТОВАРОВ В НАЛИЧИИ
+// =========================================
+
+document.querySelectorAll(".handmade-gallery").forEach(gallery => {
+    const slides = gallery.querySelectorAll(".handmade-slide");
+    const prevButton = gallery.querySelector(".handmade-gallery-prev");
+    const nextButton = gallery.querySelector(".handmade-gallery-next");
+    const dotsContainer = gallery.querySelector(".handmade-gallery-dots");
+
+    if (!slides.length) return;
+
+    let currentSlide = 0;
+    let autoSlide;
+
+    // Создаём точки
+    slides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+
+        dot.className = "handmade-gallery-dot";
+
+        if (index === 0) {
+            dot.classList.add("active");
+        }
+
+        dot.setAttribute("aria-label", `Фото ${index + 1}`);
+
+        dot.addEventListener("click", () => {
+            showSlide(index);
+            restartAutoSlide();
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".handmade-gallery-dot");
+
+    // Показать конкретное фото
+    function showSlide(index) {
+        if (index < 0) {
+            index = slides.length - 1;
+        }
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        currentSlide = index;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("active", i === currentSlide);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === currentSlide);
+        });
+    }
+
+    // Следующее фото
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    // Предыдущее фото
+    function previousSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    // Автоматическая смена
+    function startAutoSlide() {
+        autoSlide = setInterval(nextSlide, 4000);
+    }
+
+    // Перезапускаем таймер после ручного переключения
+    function restartAutoSlide() {
+        clearInterval(autoSlide);
+        startAutoSlide();
+    }
+
+    // Кнопка назад
+    if (prevButton) {
+        prevButton.addEventListener("click", event => {
+            event.stopPropagation();
+            previousSlide();
+            restartAutoSlide();
+        });
+    }
+
+    // Кнопка вперёд
+    if (nextButton) {
+        nextButton.addEventListener("click", event => {
+            event.stopPropagation();
+            nextSlide();
+            restartAutoSlide();
+        });
+    }
+
+    // Размытый фон для каждого изображения
+    slides.forEach(slide => {
+        const img = slide.querySelector("img");
+
+        if (img) {
+            slide.style.setProperty(
+                "--handmade-bg",
+                `url("${img.src}")`
+            );
+        }
+    });
+
+    // Запускаем автоматическую смену
+    startAutoSlide();
+});
