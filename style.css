@@ -4643,3 +4643,100 @@ h1 span {
     height: auto !important;
     min-height: 0 !important;
 }
+/* =========================================
+   КАРТИНКИ ГАЛЕРЕИ УСЛУГ
+   ========================================= */
+
+.service-gallery .gallery-slide img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+/* =========================================
+   РАЗМЫТЫЙ ФОН ДЛЯ ГАЛЕРЕИ УСЛУГ
+   ========================================= */
+
+.service-gallery {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Размытая копия картинки на фоне */
+.service-gallery .gallery-slide::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+
+    background-image: var(--gallery-bg);
+    background-size: cover;
+    background-position: center;
+
+    filter: blur(25px);
+    transform: scale(1.1);
+
+    opacity: 0.45;
+    z-index: 0;
+}
+
+/* Сама картинка поверх размытого фона */
+.service-gallery .gallery-slide img {
+    position: relative;
+    z-index: 1;
+
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+.order-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 165px;
+    min-height: 52px;
+    padding: 12px 24px;
+
+    background: linear-gradient(135deg, #ffe477, #f5c94a);
+    color: #29213f;
+
+    border: 1px solid #ffe99a;
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+
+    box-shadow:
+        0 0 12px rgba(255, 220, 100, 0.35),
+        0 6px 18px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+/* Наведение */
+.order-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    background: linear-gradient(135deg, #fff09a, #ffd75c);
+
+    box-shadow:
+        0 0 18px rgba(255, 225, 100, 0.7),
+        0 0 35px rgba(255, 210, 70, 0.35),
+        0 8px 22px rgba(0, 0, 0, 0.25);
+
+    filter: brightness(1.05);
+}
+
+/* Нажатие */
+.order-button:active {
+    transform: translateY(-1px) scale(0.98);
+}

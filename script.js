@@ -558,3 +558,19 @@ mediaGalleries.forEach(gallery => {
     updateBlurBackground("video");
 
 });
+// =========================================
+// РАЗМЫТЫЙ ФОН ДЛЯ ГАЛЕРЕИ УСЛУГ
+// =========================================
+
+document.querySelectorAll(".service-gallery .gallery-slide").forEach(slide => {
+
+    const img = slide.querySelector("img");
+
+    if (img) {
+        slide.style.setProperty(
+            "--gallery-bg",
+            `url("${img.src}")`
+        );
+    }
+
+});
