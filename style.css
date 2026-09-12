@@ -5898,3 +5898,63 @@ h1 span {
     font-size: 12px;
     line-height: 1.5;
 }
+/* =========================================
+   СЕКРЕТНЫЙ БОНУС — РЕАКЦИЯ STARKI
+   ========================================= */
+
+.mascot-image {
+    cursor: pointer;
+
+    transition:
+        filter 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* При наведении Старки оживает */
+
+.mascot-image:hover {
+
+    animation: mascotSecretHover 1.4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 8px rgba(130, 190, 255, 0.75))
+        drop-shadow(0 0 20px rgba(160, 100, 255, 0.55))
+        drop-shadow(0 0 35px rgba(255, 228, 119, 0.3));
+
+}
+
+
+/* Лёгкое покачивание */
+
+@keyframes mascotSecretHover {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(-1deg)
+            scale(1);
+    }
+
+    25% {
+        transform:
+            translateY(-5px)
+            rotate(1deg)
+            scale(1.025);
+    }
+
+    50% {
+        transform:
+            translateY(-2px)
+            rotate(-1deg)
+            scale(1.04);
+    }
+
+    75% {
+        transform:
+            translateY(-5px)
+            rotate(1deg)
+            scale(1.025);
+    }
+
+}
