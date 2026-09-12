@@ -2,267 +2,411 @@
 // ⭐ ЗВЁЗДЫ
 // =========================
 
-const starCount = 100;
-const stars = [];
+const isMobile =
+    window.matchMedia("(max-width: 800px)").matches;
+
+
+// Больше звёзд, но без mousemove
+const starCount =
+    isMobile ? 45 : 90;
+
 
 for (let i = 0; i < starCount; i++) {
-    const star = document.createElement("div");
+
+    const star =
+        document.createElement("div");
 
     star.classList.add("star");
 
-    star.style.left = Math.random() * 100 + "%";
-    star.style.top = Math.random() * 100 + "%";
-    star.style.animationDelay = Math.random() * 3 + "s";
+
+    // Случайная позиция
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    // Разный размер
+    const size =
+        Math.random() * 2 + 1;
+
+    star.style.width =
+        `${size}px`;
+
+    star.style.height =
+        `${size}px`;
+
+
+    // Разная задержка
+    star.style.animationDelay =
+        `${Math.random() * 4}s`;
+
+
+    // Разная скорость мерцания
+    star.style.animationDuration =
+        `${2 + Math.random() * 3}s`;
+
 
     document.body.appendChild(star);
-    stars.push(star);
+
 }
-
-document.addEventListener("mousemove", (event) => {
-    stars.forEach((star) => {
-
-        const rect = star.getBoundingClientRect();
-
-        const starX = rect.left + rect.width / 2;
-        const starY = rect.top + rect.height / 2;
-
-        const distanceX = starX - event.clientX;
-        const distanceY = starY - event.clientY;
-
-        const distance = Math.sqrt(
-            distanceX * distanceX +
-            distanceY * distanceY
-        );
-
-        if (distance < 150) {
-
-            const strength = (150 - distance) / 150;
-
-            const moveX = distanceX * strength * 0.15;
-            const moveY = distanceY * strength * 0.15;
-
-            star.style.translate = `${moveX}px ${moveY}px`;
-
-        } else {
-
-            star.style.translate = "0px 0px";
-
-        }
-    });
-});
-
 
 // =========================
 // 🖼️ ГАЛЕРЕИ В УСЛУГАХ
 // =========================
 
-document.querySelectorAll(".service-gallery").forEach((gallery) => {
+document
+    .querySelectorAll(".service-gallery")
+    .forEach((gallery) => {
 
-    const slides = gallery.querySelectorAll(".gallery-slide");
-    const prevButton = gallery.querySelector(".gallery-prev");
-    const nextButton = gallery.querySelector(".gallery-next");
-    const dotsContainer = gallery.querySelector(".gallery-dots");
-
-    if (
-        !slides.length ||
-        !prevButton ||
-        !nextButton ||
-        !dotsContainer
-    ) {
-        return;
-    }
-
-    let currentSlide = 0;
-    let autoSlide;
-
-
-    // ---------- ТОЧКИ ----------
-
-    slides.forEach((slide, index) => {
-
-        const dot = document.createElement("button");
-
-        dot.classList.add("gallery-dot");
-
-        if (index === 0) {
-            dot.classList.add("active");
-        }
-
-        dot.addEventListener("click", () => {
-            showSlide(index);
-            restartAutoSlide();
-        });
-
-        dotsContainer.appendChild(dot);
-
-    });
-
-    const dots = dotsContainer.querySelectorAll(".gallery-dot");
-
-
-    // ---------- ПОКАЗ СЛАЙДА ----------
-
-    function showSlide(index) {
-
-        currentSlide = index;
-
-        slides.forEach((slide, i) => {
-
-            slide.classList.toggle(
-                "active",
-                i === currentSlide
+        const slides =
+            gallery.querySelectorAll(
+                ".gallery-slide"
             );
 
-        });
-
-        dots.forEach((dot, i) => {
-
-            dot.classList.toggle(
-                "active",
-                i === currentSlide
+        const prevButton =
+            gallery.querySelector(
+                ".gallery-prev"
             );
 
-        });
+        const nextButton =
+            gallery.querySelector(
+                ".gallery-next"
+            );
 
-    }
+        const dotsContainer =
+            gallery.querySelector(
+                ".gallery-dots"
+            );
 
 
-    // ---------- СЛЕДУЮЩИЙ ----------
-
-    function nextSlide() {
-
-        currentSlide++;
-
-        if (currentSlide >= slides.length) {
-            currentSlide = 0;
+        if (
+            !slides.length ||
+            !prevButton ||
+            !nextButton ||
+            !dotsContainer
+        ) {
+            return;
         }
 
-        showSlide(currentSlide);
 
-    }
+        let currentSlide = 0;
 
 
-    // ---------- ПРЕДЫДУЩИЙ ----------
+        // =====================================
+        // ТОЧКИ
+        // =====================================
 
-    function prevSlide() {
+        slides.forEach(
+            (slide, index) => {
 
-        currentSlide--;
+                const dot =
+                    document.createElement(
+                        "button"
+                    );
 
-        if (currentSlide < 0) {
-            currentSlide = slides.length - 1;
+
+                dot.classList.add(
+                    "gallery-dot"
+                );
+
+
+                if (index === 0) {
+
+                    dot.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                dot.setAttribute(
+                    "aria-label",
+                    `Фото ${index + 1}`
+                );
+
+
+                dot.addEventListener(
+                    "click",
+                    () => {
+
+                        showSlide(index);
+
+                    }
+                );
+
+
+                dotsContainer.appendChild(
+                    dot
+                );
+
+            }
+        );
+
+
+        const dots =
+            dotsContainer.querySelectorAll(
+                ".gallery-dot"
+            );
+
+
+        // =====================================
+        // ПОКАЗ СЛАЙДА
+        // =====================================
+
+        function showSlide(index) {
+
+            if (index < 0) {
+
+                index =
+                    slides.length - 1;
+
+            }
+
+
+            if (
+                index >= slides.length
+            ) {
+
+                index = 0;
+
+            }
+
+
+            currentSlide =
+                index;
+
+
+            slides.forEach(
+                (slide, i) => {
+
+                    slide.classList.toggle(
+                        "active",
+                        i === currentSlide
+                    );
+
+                }
+            );
+
+
+            dots.forEach(
+                (dot, i) => {
+
+                    dot.classList.toggle(
+                        "active",
+                        i === currentSlide
+                    );
+
+                }
+            );
+
         }
 
-        showSlide(currentSlide);
 
-    }
+        // =====================================
+        // НАЗАД
+        // =====================================
+
+        prevButton.addEventListener(
+            "click",
+            () => {
+
+                showSlide(
+                    currentSlide - 1
+                );
+
+            }
+        );
 
 
-    // ---------- КНОПКИ ----------
+        // =====================================
+        // ВПЕРЁД
+        // =====================================
 
-    nextButton.addEventListener("click", () => {
+        nextButton.addEventListener(
+            "click",
+            () => {
 
-        nextSlide();
-        restartAutoSlide();
+                showSlide(
+                    currentSlide + 1
+                );
+
+            }
+        );
+
+
+        // =====================================
+        // РАЗМЫТЫЙ ФОН
+        // =====================================
+
+        slides.forEach(
+            slide => {
+
+                const img =
+                    slide.querySelector("img");
+
+
+                if (img) {
+
+                    slide.style.setProperty(
+                        "--gallery-bg",
+                        `url("${img.src}")`
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================
+        // НАЧАЛЬНЫЙ СЛАЙД
+        // =====================================
+
+        showSlide(0);
 
     });
-
-    prevButton.addEventListener("click", () => {
-
-        prevSlide();
-        restartAutoSlide();
-
-    });
-
-
-    // ---------- АВТОПЕРЕКЛЮЧЕНИЕ ----------
-
-    function startAutoSlide() {
-
-        autoSlide = setInterval(() => {
-
-            nextSlide();
-
-        }, 4000);
-
-    }
-
-    function restartAutoSlide() {
-
-        clearInterval(autoSlide);
-        startAutoSlide();
-
-    }
-
-    startAutoSlide();
-
-});
 
 
 // =========================
 // 🐰 STARKI
 // =========================
 
-const starki = document.querySelector(".starki");
+const starki =
+    document.querySelector(".starki");
 
 if (starki) {
 
     let moveX = 0;
     let moveY = 0;
 
-    document.addEventListener("mousemove", (event) => {
+    let mouseX = 0;
+    let mouseY = 0;
 
-        const rect = starki.getBoundingClientRect();
-
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const dx = event.clientX - centerX;
-        const dy = event.clientY - centerY;
-
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    let starkiFrame = null;
 
 
-        // Мышка далеко
-        if (distance > 300) {
+    document.addEventListener(
+        "mousemove",
+        (event) => {
 
-            starki.classList.remove("scared");
+            mouseX = event.clientX;
+            mouseY = event.clientY;
 
-            moveX *= 0.85;
-            moveY *= 0.85;
+
+            if (starkiFrame) {
+                return;
+            }
+
+
+            starkiFrame =
+                requestAnimationFrame(() => {
+
+                    const rect =
+                        starki.getBoundingClientRect();
+
+
+                    const centerX =
+                        rect.left +
+                        rect.width / 2;
+
+                    const centerY =
+                        rect.top +
+                        rect.height / 2;
+
+
+                    const dx =
+                        mouseX - centerX;
+
+                    const dy =
+                        mouseY - centerY;
+
+
+                    const distance =
+                        Math.sqrt(
+                            dx * dx +
+                            dy * dy
+                        );
+
+
+                    // Мышка далеко
+                    if (distance > 300) {
+
+                        starki.classList.remove(
+                            "scared"
+                        );
+
+
+                        moveX *= 0.85;
+                        moveY *= 0.85;
+
+
+                        starki.style.transform =
+                            `translate(${moveX}px, ${moveY}px)`;
+
+
+                    } else {
+
+                        // Мышка приближается
+                        starki.classList.add(
+                            "scared"
+                        );
+
+
+                        const angle =
+                            Math.atan2(dy, dx);
+
+
+                        const power =
+                            (300 - distance) / 300;
+
+
+                        const escape =
+                            power * 100;
+
+
+                        moveX =
+                            -Math.cos(angle) *
+                            escape;
+
+
+                        moveY =
+                            -Math.sin(angle) *
+                            escape;
+
+
+                        starki.style.transform =
+                            `translate(${moveX}px, ${moveY}px)`;
+
+                    }
+
+
+                    starkiFrame = null;
+
+                });
+
+        },
+        { passive: true }
+    );
+
+
+    document.addEventListener(
+        "mouseleave",
+        () => {
+
+            moveX = 0;
+            moveY = 0;
 
             starki.style.transform =
-                `translate(${moveX}px, ${moveY}px)`;
+                "translate(0, 0)";
 
-            return;
+            starki.classList.remove(
+                "scared"
+            );
 
         }
-
-
-        // Мышка приближается
-        starki.classList.add("scared");
-
-        const angle = Math.atan2(dy, dx);
-        const power = (300 - distance) / 300;
-        const escape = power * 100;
-
-        moveX = -Math.cos(angle) * escape;
-        moveY = -Math.sin(angle) * escape;
-
-        starki.style.transform =
-            `translate(${moveX}px, ${moveY}px)`;
-
-    });
-
-
-    document.addEventListener("mouseleave", () => {
-
-        moveX = 0;
-        moveY = 0;
-
-        starki.style.transform = "translate(0, 0)";
-        starki.classList.remove("scared");
-
-    });
+    );
 
 }
 
@@ -354,125 +498,290 @@ if (likesMascot) {
    ГАЛЕРЕЯ НОВИНОК
    ========================================= */
 
-const mediaGalleries = document.querySelectorAll(".new-product-image");
+const mediaGalleries =
+    document.querySelectorAll(".new-product-image");
+
 
 mediaGalleries.forEach(gallery => {
 
-    const video = gallery.querySelector(".new-product-video");
-    const photos = gallery.querySelectorAll(".new-product-photo");
-    const thumbnails = gallery.querySelectorAll(".media-thumbnail");
+    const video =
+        gallery.querySelector(".new-product-video");
 
-    if (!video || thumbnails.length === 0) return;
+    const photos =
+        gallery.querySelectorAll(".new-product-photo");
+
+    const thumbnails =
+        gallery.querySelectorAll(".media-thumbnail");
 
 
-    /* =========================================
-       СОЗДАЁМ РАЗМЫТЫЙ ФОН
-       ========================================= */
-
-    let blurBackground = gallery.querySelector(".media-blur-bg");
-
-    if (!blurBackground) {
-        blurBackground = document.createElement("div");
-        blurBackground.className = "media-blur-bg";
-
-        blurBackground.style.position = "absolute";
-        blurBackground.style.inset = "0";
-        blurBackground.style.overflow = "hidden";
-        blurBackground.style.zIndex = "0";
-        blurBackground.style.pointerEvents = "none";
-        blurBackground.style.background = "#171124";
-
-        gallery.prepend(blurBackground);
+    if (!video || thumbnails.length === 0) {
+        return;
     }
 
 
     /* =========================================
-       ОБНОВЛЕНИЕ РАЗМЫТОГО ФОНА
+       РАЗМЫТЫЙ ФОН
+       ========================================= */
+
+    let blurBackground =
+        gallery.querySelector(".media-blur-bg");
+
+
+    if (!blurBackground) {
+
+        blurBackground =
+            document.createElement("div");
+
+        blurBackground.className =
+            "media-blur-bg";
+
+        blurBackground.style.position =
+            "absolute";
+
+        blurBackground.style.inset =
+            "0";
+
+        blurBackground.style.overflow =
+            "hidden";
+
+        blurBackground.style.zIndex =
+            "0";
+
+        blurBackground.style.pointerEvents =
+            "none";
+
+        blurBackground.style.background =
+            "#171124";
+
+        gallery.prepend(
+            blurBackground
+        );
+
+    }
+
+
+    /* =========================================
+       ОБЩИЕ СТИЛИ BLUR
+       ========================================= */
+
+    function styleBlurMedia(media) {
+
+        media.style.position = "absolute";
+
+        media.style.inset = "-30px";
+
+        media.style.width =
+            "calc(100% + 60px)";
+
+        media.style.height =
+            "calc(100% + 60px)";
+
+        media.style.objectFit =
+            "cover";
+
+        media.style.objectPosition =
+            "center";
+
+        media.style.filter =
+            "blur(25px)";
+
+        media.style.transform =
+            "scale(1.15)";
+
+        media.style.opacity =
+            "0.75";
+
+        media.style.pointerEvents =
+            "none";
+
+    }
+
+
+    /* =========================================
+       BLUR ИЗ ФОТО
+       ========================================= */
+
+    function setImageBlur(source) {
+
+        const image =
+            document.createElement("img");
+
+        image.src =
+            source.src;
+
+        image.alt = "";
+
+        styleBlurMedia(
+            image
+        );
+
+        blurBackground
+            .appendChild(image);
+
+    }
+
+
+    /* =========================================
+       BLUR ИЗ СТОП-КАДРА ВИДЕО
+       ========================================= */
+
+    function setVideoBlur() {
+
+        if (
+            !video.videoWidth ||
+            !video.videoHeight
+        ) {
+
+            blurBackground.style.background =
+                "#171124";
+
+            return;
+
+        }
+
+
+        try {
+
+            const canvas =
+                document.createElement("canvas");
+
+            canvas.width =
+                video.videoWidth;
+
+            canvas.height =
+                video.videoHeight;
+
+
+            const context =
+                canvas.getContext("2d");
+
+
+            if (!context) {
+                return;
+            }
+
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            const image =
+                document.createElement("img");
+
+
+            image.alt = "";
+
+
+            image.src =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.7
+                );
+
+
+            styleBlurMedia(
+                image
+            );
+
+
+            blurBackground
+                .appendChild(image);
+
+
+        } catch (error) {
+
+            console.warn(
+                "Не удалось создать blur для видео:",
+                error
+            );
+
+            blurBackground.style.background =
+                "#171124";
+
+        }
+
+    }
+
+
+    /* =========================================
+       ОБНОВЛЕНИЕ BLUR
        ========================================= */
 
     function updateBlurBackground(type) {
 
         blurBackground.innerHTML = "";
 
-        let source;
 
         if (type === "video") {
-            source = video;
+
+            /*
+                Ждём кадр видео,
+                но больше НЕ создаём второе видео.
+            */
+
+            if (video.readyState >= 2) {
+
+                if (
+                    "requestVideoFrameCallback"
+                    in video
+                ) {
+
+                    video.requestVideoFrameCallback(
+                        () => {
+                            setVideoBlur();
+                        }
+                    );
+
+                } else {
+
+                    setTimeout(
+                        setVideoBlur,
+                        50
+                    );
+
+                }
+
+            } else {
+
+                video.addEventListener(
+                    "loadeddata",
+                    () => {
+                        setVideoBlur();
+                    },
+                    { once: true }
+                );
+
+            }
+
         }
+
 
         if (type === "photo1") {
-            source = photos[0];
+
+            if (photos[0]) {
+                setImageBlur(
+                    photos[0]
+                );
+            }
+
         }
+
 
         if (type === "photo2") {
-            source = photos[1];
-        }
 
-        if (!source) return;
-
-
-        /* Создаём копию выбранного медиа */
-
-        let backgroundMedia;
-
-        if (source.tagName === "VIDEO") {
-
-            backgroundMedia = document.createElement("video");
-
-            backgroundMedia.src = source.currentSrc || source.src;
-
-            backgroundMedia.autoplay = true;
-            backgroundMedia.muted = true;
-            backgroundMedia.loop = true;
-            backgroundMedia.playsInline = true;
-
-            backgroundMedia.setAttribute("muted", "");
-            backgroundMedia.setAttribute("autoplay", "");
-            backgroundMedia.setAttribute("loop", "");
-            backgroundMedia.setAttribute("playsinline", "");
-
-        } else {
-
-            backgroundMedia = document.createElement("img");
-
-            backgroundMedia.src = source.src;
-            backgroundMedia.alt = "";
-
-        }
-
-
-        /* Стиль размытого фона */
-
-        backgroundMedia.style.position = "absolute";
-        backgroundMedia.style.inset = "-30px";
-
-        backgroundMedia.style.width = "calc(100% + 60px)";
-        backgroundMedia.style.height = "calc(100% + 60px)";
-
-        backgroundMedia.style.objectFit = "cover";
-        backgroundMedia.style.objectPosition = "center";
-
-        backgroundMedia.style.filter = "blur(25px)";
-        backgroundMedia.style.transform = "scale(1.15)";
-
-        backgroundMedia.style.opacity = "0.75";
-
-        backgroundMedia.style.pointerEvents = "none";
-
-
-        blurBackground.appendChild(backgroundMedia);
-
-
-        /* Если это видео — запускаем его */
-
-        if (backgroundMedia.tagName === "VIDEO") {
-
-            const playPromise = backgroundMedia.play();
-
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {});
+            if (photos[1]) {
+                setImageBlur(
+                    photos[1]
+                );
             }
+
         }
+
     }
 
 
@@ -480,82 +789,223 @@ mediaGalleries.forEach(gallery => {
        ПЕРЕКЛЮЧЕНИЕ МЕДИА
        ========================================= */
 
-    thumbnails.forEach(thumbnail => {
+    thumbnails.forEach(
+        thumbnail => {
 
-        thumbnail.addEventListener("click", () => {
+            thumbnail.addEventListener(
+                "click",
+                () => {
 
-            const media = thumbnail.dataset.media;
-
-
-            /* Сначала скрываем всё */
-
-            video.classList.remove("active-media");
-
-            photos.forEach(photo => {
-                photo.classList.remove("active-media");
-            });
-
-            thumbnails.forEach(item => {
-                item.classList.remove("active");
-            });
+                    const media =
+                        thumbnail.dataset.media;
 
 
-            /* Показываем выбранное */
+                    video.classList.remove(
+                        "active-media"
+                    );
 
-            if (media === "video") {
 
-                video.classList.add("active-media");
+                    photos.forEach(
+                        photo => {
 
-                video.muted = true;
+                            photo.classList.remove(
+                                "active-media"
+                            );
 
-                const playPromise = video.play();
+                        }
+                    );
 
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
+
+                    thumbnails.forEach(
+                        item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    /* ---------- ВИДЕО ---------- */
+
+                    if (
+                        media === "video"
+                    ) {
+
+                        video.classList.add(
+                            "active-media"
+                        );
+
+
+                        video.muted = true;
+
+
+                        const playPromise =
+                            video.play();
+
+
+                        if (
+                            playPromise !== undefined
+                        ) {
+
+                            playPromise.catch(
+                                () => {}
+                            );
+
+                        }
+
+
+                        updateBlurBackground(
+                            "video"
+                        );
+
+                    }
+
+
+                    /* ---------- ФОТО 1 ---------- */
+
+                    if (
+                        media === "photo1"
+                    ) {
+
+                        if (photos[0]) {
+
+                            photos[0]
+                                .classList
+                                .add(
+                                    "active-media"
+                                );
+
+                        }
+
+
+                        video.pause();
+
+
+                        updateBlurBackground(
+                            "photo1"
+                        );
+
+                    }
+
+
+                    /* ---------- ФОТО 2 ---------- */
+
+                    if (
+                        media === "photo2"
+                    ) {
+
+                        if (photos[1]) {
+
+                            photos[1]
+                                .classList
+                                .add(
+                                    "active-media"
+                                );
+
+                        }
+
+
+                        video.pause();
+
+
+                        updateBlurBackground(
+                            "photo2"
+                        );
+
+                    }
+
+
+                    thumbnail.classList.add(
+                        "active"
+                    );
+
                 }
+            );
 
-                updateBlurBackground("video");
-            }
-
-
-            if (media === "photo1") {
-
-                if (photos[0]) {
-                    photos[0].classList.add("active-media");
-                }
-
-                video.pause();
-
-                updateBlurBackground("photo1");
-            }
-
-
-            if (media === "photo2") {
-
-                if (photos[1]) {
-                    photos[1].classList.add("active-media");
-                }
-
-                video.pause();
-
-                updateBlurBackground("photo2");
-            }
-
-
-            /* Подсвечиваем выбранную миниатюру */
-
-            thumbnail.classList.add("active");
-
-        });
-
-    });
+        }
+    );
 
 
     /* =========================================
-       НАЧАЛЬНЫЙ ФОН
+       ВИДЕО ИГРАЕТ ТОЛЬКО НА ЭКРАНЕ
        ========================================= */
 
-    updateBlurBackground("video");
+    video.preload =
+        "metadata";
+
+    video.muted =
+        true;
+
+    video.playsInline =
+        true;
+
+
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
+
+        const observer =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                /*
+                                    Играем только если
+                                    сейчас выбрано видео.
+                                */
+
+                                if (
+                                    video.classList.contains(
+                                        "active-media"
+                                    )
+                                ) {
+
+                                    video.play()
+                                        .catch(
+                                            () => {}
+                                        );
+
+                                }
+
+                            } else {
+
+                                video.pause();
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.35
+                }
+            );
+
+
+        observer.observe(
+            video
+        );
+
+    }
+
+
+    /* =========================================
+       НАЧАЛЬНОЕ СОСТОЯНИЕ
+       ========================================= */
+
+    updateBlurBackground(
+        "video"
+    );
 
 });
 // =========================================
