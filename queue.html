@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Очередь заказов — Starkisss Shop ⭐</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Звёзды создаются через JavaScript -->
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            Starkisss <span>✦</span>
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Главная
+            </a>
+
+            <a href="index.html#about">
+                О магазине
+            </a>
+
+            <a href="index.html#services">
+                Услуги на заказ
+            </a>
+
+            <a href="handmade.html">
+                В наличии
+            </a>
+
+            <a href="other.html">
+                Прочее
+            </a>
+
+        </nav>
+
+        <button class="theme-button">
+            ☀
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- ================= ОЧЕРЕДЬ ЗАКАЗОВ ================= -->
+
+        <section class="order-queue" id="queue">
+
+            <div class="queue-title">
+
+                <h2>
+                    ✦ Очередь заказов ✦
+                </h2>
+
+                <div class="queue-loading">
+
+                    <span>✦</span>
+
+                    <span>
+                        Сейчас в работе...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="queue-list">
+
+                <!-- ЗАКАЗ 1 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #001
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Значки + 3D стикеры
+                        </h3>
+
+                        <p>
+                            Значок квадрат; значок 58 мм;
+                            значок 32 мм; 3D стикер сердечко;
+                            3D стикер квадрат.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-waiting">
+
+                        <span>✧</span>
+
+                        В очереди
+
+                    </div>
+
+                </article>
+
+
+                <!-- ЗАКАЗ 2 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #002
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Индивидуальный заказ
+                        </h3>
+
+                        <p>
+                            Значок 58 мм + кастомный ЮЧ.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-making">
+
+                        <span>✦</span>
+
+                        Изготавливается
+
+                    </div>
+
+                </article>
+
+
+                <!-- ЗАКАЗ 3 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #003
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Индивидуальный заказ
+                        </h3>
+
+                        <p>
+                            Брелок-сердечко с карабином
+                            золотого сердца.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-making">
+
+                        <span>✦</span>
+
+                        Изготавливается
+
+                    </div>
+
+                </article>
+
+
+                <!-- ЗАКАЗ 4 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #004
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Индивидуальный заказ
+                        </h3>
+
+                        <p>
+                            2 кастомных квадратных значка.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-making">
+
+                        <span>✦</span>
+
+                        Изготавливается
+
+                    </div>
+
+                </article>
+
+
+                <!-- ЗАКАЗ 5 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #005
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Индивидуальный заказ
+                        </h3>
+
+                        <p>
+                            Значок 44 мм; значок 58;
+                            открытка А5.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-making">
+
+                        <span>✦</span>
+
+                        Изготавливается
+
+                    </div>
+
+                </article>
+
+
+                <!-- ЗАКАЗ 6 -->
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #006
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Индивидуальный заказ
+                        </h3>
+
+                        <p>
+                            2 пудинга + 2 значка.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-ready">
+
+                        <span>★</span>
+
+                        Готов к отправке
+
+                    </div>
+
+                </article>
+
+
+                <!-- ПРИМЕР ДЛЯ БУДУЩИХ ЗАКАЗОВ -->
+
+                <!--
+
+                <article class="queue-card">
+
+                    <div class="queue-number">
+                        #007
+                    </div>
+
+                    <div class="queue-info">
+
+                        <h3>
+                            Название заказа
+                        </h3>
+
+                        <p>
+                            Описание заказа.
+                        </p>
+
+                    </div>
+
+                    <div class="queue-status status-delivery">
+
+                        <span>➜</span>
+
+                        Доставляется
+
+                    </div>
+
+                </article>
+
+                -->
+
+            </div>
+
+
+            <div class="queue-footer">
+
+                <p>
+                    Появились вопросы?
+                </p>
+
+                <button
+                    class="order-button"
+                    onclick="window.open('https://t.me/StarkisssSupport_bot', '_blank')"
+                >
+                    Напишите в поддержку!
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

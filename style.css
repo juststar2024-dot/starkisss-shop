@@ -5306,3 +5306,46 @@ h1 span {
     }
 
 }
+/* =========================
+   КНОПКА ОЧЕРЕДИ
+   ========================= */
+
+.queue-link-wrap {
+    display: flex;
+    justify-content: center;
+
+    margin: 50px 0 70px;
+}
+
+.queue-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 25px;
+
+    border: 1px solid #ffe47766;
+    border-radius: 999px;
+
+    background: #ffffff0a;
+
+    color: white;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.queue-link:hover {
+    background: #ffe477;
+    color: #24113d;
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 25px #ffe47766;
+}
