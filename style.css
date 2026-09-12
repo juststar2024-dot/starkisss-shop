@@ -5624,3 +5624,277 @@ h1 span {
     color: #72bfff;
     background: rgba(114, 191, 255, 0.14);
 }
+/* =========================================
+   СЕКРЕТНЫЙ ЕЖЕДНЕВНЫЙ БОНУС
+   ========================================= */
+
+.mascot-image {
+    cursor: pointer;
+}
+
+
+/* Затемнение */
+
+.daily-bonus-modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(10, 7, 25, 0.72);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 99999;
+}
+
+.daily-bonus-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Окошко */
+
+.daily-bonus-box {
+    position: relative;
+
+    width: min(430px, 100%);
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    border-radius: 28px;
+
+    border: 1px solid rgba(255, 228, 119, 0.25);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(125, 66, 217, 0.22),
+            transparent 65%
+        ),
+        #171126;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 50px rgba(125, 66, 217, 0.2);
+
+    transform: translateY(20px) scale(0.95);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.daily-bonus-modal.show .daily-bonus-box {
+    transform: translateY(0) scale(1);
+}
+
+
+/* Закрытие */
+
+.daily-bonus-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.daily-bonus-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: rotate(8deg);
+}
+
+
+/* Большая звезда */
+
+.daily-bonus-star {
+    font-size: 48px;
+
+    color: #ffe477;
+
+    animation: bonusStar 1.8s ease-in-out infinite;
+}
+
+@keyframes bonusStar {
+
+    0%, 100% {
+        transform: scale(0.9) rotate(0deg);
+        filter: drop-shadow(0 0 5px rgba(255, 228, 119, 0.2));
+    }
+
+    50% {
+        transform: scale(1.15) rotate(12deg);
+        filter: drop-shadow(0 0 18px rgba(255, 228, 119, 0.65));
+    }
+
+}
+
+
+/* Маленький заголовок */
+
+.daily-bonus-small {
+    margin: 8px 0 10px;
+
+    color: #9b7cff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+
+/* Заголовок */
+
+.daily-bonus-box h2 {
+    margin: 0 0 20px;
+
+    color: white;
+
+    font-size: 26px;
+}
+
+
+/* Награда */
+
+.daily-bonus-reward {
+    margin: 20px 0;
+
+    color: #ffe477;
+
+    font-size: 34px;
+    font-weight: 900;
+
+    line-height: 1.2;
+
+    text-shadow:
+        0 0 20px rgba(255, 228, 119, 0.25);
+}
+
+
+/* Редкость */
+
+.daily-bonus-rarity {
+    margin: 0;
+
+    color: #c8c7df;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+/* Таймер */
+
+.daily-bonus-timer {
+    margin: 25px 0 20px;
+
+    color: #aaa7c2;
+
+    font-size: 13px;
+}
+
+
+/* Кнопка */
+
+.daily-bonus-ok {
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #ffe477;
+
+    color: #24113d;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.daily-bonus-ok:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 25px rgba(255, 228, 119, 0.35);
+}
+/* =========================================
+   ДАТЫ БОНУСА
+   ========================================= */
+
+.daily-bonus-dates {
+    margin: 18px 0;
+
+    padding: 12px 14px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    text-align: left;
+}
+
+.daily-bonus-dates p {
+    margin: 5px 0;
+
+    color: #aaa7c2;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.daily-bonus-dates strong {
+    color: #d8d3ec;
+}
+
+.daily-bonus-note {
+    margin: 16px 0;
+
+    color: #c8c7df;
+
+    font-size: 12px;
+    line-height: 1.5;
+}

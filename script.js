@@ -686,3 +686,584 @@ document.querySelectorAll(".handmade-gallery").forEach(gallery => {
     // Запускаем автоматическую смену
     startAutoSlide();
 });
+// =========================================
+// ⭐ СЕКРЕТНЫЙ ЕЖЕДНЕВНЫЙ БОНУС
+// =========================================
+
+const bonusMascot =
+    document.querySelector(".mascot-image");
+
+const bonusModal =
+    document.querySelector("#dailyBonusModal");
+
+const bonusClose =
+    document.querySelector("#dailyBonusClose");
+
+const bonusOk =
+    document.querySelector("#dailyBonusOk");
+
+const bonusReward =
+    document.querySelector("#dailyBonusReward");
+
+const bonusRarity =
+    document.querySelector("#dailyBonusRarity");
+
+const bonusTimer =
+    document.querySelector("#dailyBonusTimer");
+
+const bonusIssued =
+    document.querySelector("#dailyBonusIssued");
+
+const bonusExpires =
+    document.querySelector("#dailyBonusExpires");
+
+
+/*
+    Если элементов бонуса нет на странице,
+    просто ничего не делаем.
+*/
+
+if (
+    bonusMascot &&
+    bonusModal &&
+    bonusClose &&
+    bonusOk &&
+    bonusReward &&
+    bonusRarity &&
+    bonusTimer &&
+    bonusIssued &&
+    bonusExpires
+) {
+
+    // =====================================
+    // НАСТРОЙКИ
+    // =====================================
+
+    const BONUS_STORAGE_KEY =
+        "starkisss_daily_bonus";
+
+    const BONUS_DURATION =
+        24 * 60 * 60 * 1000;
+
+
+    // =====================================
+    // СИНХРОНИЗАЦИЯ С ВРЕМЕНЕМ СЕРВЕРА
+    // =====================================
+
+    let serverTimeOffset = 0;
+
+
+    async function syncServerTime() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "/.netlify/functions/server-time",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+                throw new Error(
+                    "Не удалось получить серверное время"
+                );
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                typeof data.now !== "number"
+            ) {
+                throw new Error(
+                    "Сервер вернул неправильное время"
+                );
+            }
+
+
+            /*
+                Разница между серверными часами
+                и часами устройства.
+            */
+
+            serverTimeOffset =
+                data.now - Date.now();
+
+
+        } catch (error) {
+
+            console.warn(
+                "Не удалось синхронизировать время:",
+                error
+            );
+
+            /*
+                Если Netlify временно недоступен,
+                используем время устройства.
+            */
+
+            serverTimeOffset = 0;
+
+        }
+
+    }
+
+
+    function getRealTime() {
+
+        return Date.now() + serverTimeOffset;
+
+    }
+
+
+    // =====================================
+    // НАГРАДЫ
+    // =====================================
+
+    const rewards = [
+
+        {
+            reward: "3% скидки ✦",
+            rarity: "Обычная",
+            chance: 50
+        },
+
+        {
+            reward: "5% скидки ✦",
+            rarity: "Частая",
+            chance: 25
+        },
+
+        {
+            reward: "7% скидки ✦",
+            rarity: "Редкая",
+            chance: 12
+        },
+
+        {
+            reward: "10% скидки ✦",
+            rarity: "Очень редкая",
+            chance: 5
+        },
+
+        {
+            reward: "1 значок бесплатно ✦",
+            rarity: "Очень редкая",
+            chance: 3
+        },
+
+        {
+            reward: "1 3D стикер бесплатно ✦",
+            rarity: "Очень редкая",
+            chance: 2
+        },
+
+        {
+            reward: "Брелочек в подарок ✦",
+            rarity: "Особая",
+            chance: 3
+        }
+
+    ];
+
+
+    // =====================================
+    // ФОРМАТИРОВАНИЕ ДАТЫ
+    // =====================================
+
+    function formatBonusDate(timestamp) {
+
+        const date =
+            new Date(timestamp);
+
+
+        return date.toLocaleString(
+            "ru-RU",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    }
+
+
+    // =====================================
+    // СЛУЧАЙНАЯ НАГРАДА
+    // =====================================
+
+    function getRandomReward() {
+
+        const random =
+            Math.random() * 100;
+
+        let current = 0;
+
+
+        for (const item of rewards) {
+
+            current += item.chance;
+
+
+            if (random < current) {
+                return item;
+            }
+
+        }
+
+
+        return rewards[0];
+
+    }
+
+
+    // =====================================
+    // ЧИТАЕМ СОХРАНЁННЫЙ БОНУС
+    // =====================================
+
+    function getSavedBonus() {
+
+        const saved =
+            localStorage.getItem(
+                BONUS_STORAGE_KEY
+            );
+
+
+        if (!saved) {
+            return null;
+        }
+
+
+        try {
+
+            return JSON.parse(saved);
+
+        } catch {
+
+            localStorage.removeItem(
+                BONUS_STORAGE_KEY
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+    // =====================================
+    // СОЗДАЁМ НОВЫЙ БОНУС
+    // =====================================
+
+    function createBonus() {
+
+        const createdAt =
+            getRealTime();
+
+
+        const reward =
+            getRandomReward();
+
+
+        const bonus = {
+
+            reward:
+                reward.reward,
+
+            rarity:
+                reward.rarity,
+
+            createdAt:
+                createdAt
+
+        };
+
+
+        localStorage.setItem(
+            BONUS_STORAGE_KEY,
+            JSON.stringify(bonus)
+        );
+
+
+        return bonus;
+
+    }
+
+
+    // =====================================
+    // ПОЛУЧАЕМ АКТУАЛЬНЫЙ БОНУС
+    // =====================================
+
+    function getBonus() {
+
+        const saved =
+            getSavedBonus();
+
+
+        if (!saved) {
+            return createBonus();
+        }
+
+
+        const age =
+            getRealTime() -
+            saved.createdAt;
+
+
+        if (age >= BONUS_DURATION) {
+
+            localStorage.removeItem(
+                BONUS_STORAGE_KEY
+            );
+
+
+            return createBonus();
+
+        }
+
+
+        return saved;
+
+    }
+
+
+    // =====================================
+    // ТАЙМЕР
+    // =====================================
+
+    let timerInterval = null;
+
+
+    function updateTimer(createdAt) {
+
+        clearInterval(timerInterval);
+
+
+        function tick() {
+
+            const elapsed =
+                getRealTime() -
+                createdAt;
+
+
+            const remaining =
+                Math.max(
+                    0,
+                    BONUS_DURATION -
+                    elapsed
+                );
+
+
+            const hours =
+                Math.floor(
+                    remaining / 3600000
+                );
+
+
+            const minutes =
+                Math.floor(
+                    (remaining % 3600000) /
+                    60000
+                );
+
+
+            const seconds =
+                Math.floor(
+                    (remaining % 60000) /
+                    1000
+                );
+
+
+            const formatted =
+                `${String(hours).padStart(2, "0")}:` +
+                `${String(minutes).padStart(2, "0")}:` +
+                `${String(seconds).padStart(2, "0")}`;
+
+
+            if (remaining > 0) {
+
+                bonusTimer.textContent =
+                    `Следующий бонус через ${formatted}`;
+
+            } else {
+
+                bonusTimer.textContent =
+                    "Новый бонус уже доступен ✦";
+
+            }
+
+
+            if (remaining <= 0) {
+
+                clearInterval(
+                    timerInterval
+                );
+
+            }
+
+        }
+
+
+        tick();
+
+
+        timerInterval =
+            setInterval(
+                tick,
+                1000
+            );
+
+    }
+
+
+    // =====================================
+    // ОТКРЫВАЕМ БОНУС
+    // =====================================
+
+    async function openBonus() {
+
+        /*
+            Перед открытием ещё раз
+            синхронизируемся с сервером.
+        */
+
+        await syncServerTime();
+
+
+        const bonus =
+            getBonus();
+
+
+        const expiresAt =
+            bonus.createdAt +
+            BONUS_DURATION;
+
+
+        // Награда
+        bonusReward.textContent =
+            bonus.reward;
+
+
+        // Редкость
+        bonusRarity.textContent =
+            bonus.rarity;
+
+
+        // Дата выдачи
+        bonusIssued.textContent =
+            formatBonusDate(
+                bonus.createdAt
+            );
+
+
+        // Дата окончания
+        bonusExpires.textContent =
+            formatBonusDate(
+                expiresAt
+            );
+
+
+        // Таймер
+        updateTimer(
+            bonus.createdAt
+        );
+
+
+        // Открываем окно
+        bonusModal.classList.add(
+            "show"
+        );
+
+    }
+
+
+    // =====================================
+    // ЗАКРЫВАЕМ ОКНО
+    // =====================================
+
+    function closeBonus() {
+
+        bonusModal.classList.remove(
+            "show"
+        );
+
+
+        clearInterval(
+            timerInterval
+        );
+
+    }
+
+
+    // =====================================
+    // КЛИК ПО STARKI
+    // =====================================
+
+    bonusMascot.addEventListener(
+        "click",
+        openBonus
+    );
+
+
+    // =====================================
+    // КНОПКА "ЗАБРАТЬ БОНУС"
+    // =====================================
+
+    bonusOk.addEventListener(
+        "click",
+        () => {
+
+            window.open(
+                "https://t.me/StarkisssSupport_bot",
+                "_blank"
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // КНОПКА ЗАКРЫТИЯ
+    // =====================================
+
+    bonusClose.addEventListener(
+        "click",
+        closeBonus
+    );
+
+
+    // =====================================
+    // КЛИК ПО ЗАТЕМНЕНИЮ
+    // =====================================
+
+    bonusModal.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target === bonusModal
+            ) {
+
+                closeBonus();
+
+            }
+
+        }
+    );
+
+
+    // =====================================
+    // ПЕРВАЯ СИНХРОНИЗАЦИЯ
+    // =====================================
+
+    syncServerTime();
+
+}
