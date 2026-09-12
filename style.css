@@ -5114,3 +5114,195 @@ h1 span {
 .handmade-card .handmade-info {
     z-index: 5;
 }
+/* ================= ОЧЕРЕДЬ ЗАКАЗОВ ================= */
+
+.order-queue {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 50px 30px;
+}
+
+.queue-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.queue-title h2 {
+    margin: 0 0 12px;
+    font-size: 32px;
+}
+
+/* Анимированная звезда */
+
+.queue-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+.queue-loading span:first-child {
+    display: inline-block;
+    font-size: 20px;
+    animation: queueStar 1.5s ease-in-out infinite;
+}
+
+@keyframes queueStar {
+    0%, 100% {
+        transform: scale(0.8) rotate(0deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: scale(1.25) rotate(20deg);
+        opacity: 1;
+    }
+}
+
+/* Список */
+
+.queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Карточка заказа */
+
+.queue-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 20px;
+
+    padding: 20px 24px;
+
+    border-radius: 18px;
+
+    background: rgba(30, 24, 55, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.queue-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(120, 80, 220, 0.18);
+    border-color: rgba(180, 140, 255, 0.25);
+}
+
+/* Номер */
+
+.queue-number {
+    font-size: 18px;
+    font-weight: 800;
+    opacity: 0.65;
+}
+
+/* Информация */
+
+.queue-info h3 {
+    margin: 0 0 5px;
+    font-size: 17px;
+}
+
+.queue-info p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* Статус */
+
+.queue-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 12px;
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.queue-status span {
+    display: inline-block;
+    animation: statusStar 1.8s ease-in-out infinite;
+}
+
+@keyframes statusStar {
+    0%, 100% {
+        transform: scale(0.85);
+        opacity: 0.55;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Статусы */
+
+.status-making {
+    background: rgba(255, 210, 70, 0.12);
+    color: #ffd84d;
+}
+
+.status-waiting {
+    background: rgba(170, 110, 255, 0.12);
+    color: #c08cff;
+}
+
+.status-ready {
+    background: rgba(80, 200, 150, 0.12);
+    color: #72d9a9;
+}
+
+/* Нижняя часть */
+
+.queue-footer {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.queue-footer p {
+    margin-bottom: 15px;
+    opacity: 0.7;
+}
+
+/* Адаптация под телефон */
+
+@media (max-width: 700px) {
+
+    .order-queue {
+        padding: 35px 15px;
+    }
+
+    .queue-title h2 {
+        font-size: 26px;
+    }
+
+    .queue-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 18px;
+    }
+
+    .queue-status {
+        width: fit-content;
+    }
+
+}
