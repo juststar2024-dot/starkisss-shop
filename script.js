@@ -1024,118 +1024,7 @@ document.querySelectorAll(".service-gallery .gallery-slide").forEach(slide => {
     }
 
 });
-// =========================================
-// ГАЛЕРЕЯ ТОВАРОВ В НАЛИЧИИ
-// =========================================
 
-document.querySelectorAll(".handmade-gallery").forEach(gallery => {
-    const slides = gallery.querySelectorAll(".handmade-slide");
-    const prevButton = gallery.querySelector(".handmade-gallery-prev");
-    const nextButton = gallery.querySelector(".handmade-gallery-next");
-    const dotsContainer = gallery.querySelector(".handmade-gallery-dots");
-
-    if (!slides.length) return;
-
-    let currentSlide = 0;
-    let autoSlide;
-
-    // Создаём точки
-    slides.forEach((slide, index) => {
-        const dot = document.createElement("button");
-
-        dot.className = "handmade-gallery-dot";
-
-        if (index === 0) {
-            dot.classList.add("active");
-        }
-
-        dot.setAttribute("aria-label", `Фото ${index + 1}`);
-
-        dot.addEventListener("click", () => {
-            showSlide(index);
-            restartAutoSlide();
-        });
-
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll(".handmade-gallery-dot");
-
-    // Показать конкретное фото
-    function showSlide(index) {
-        if (index < 0) {
-            index = slides.length - 1;
-        }
-
-        if (index >= slides.length) {
-            index = 0;
-        }
-
-        currentSlide = index;
-
-        slides.forEach((slide, i) => {
-            slide.classList.toggle("active", i === currentSlide);
-        });
-
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentSlide);
-        });
-    }
-
-    // Следующее фото
-    function nextSlide() {
-        showSlide(currentSlide + 1);
-    }
-
-    // Предыдущее фото
-    function previousSlide() {
-        showSlide(currentSlide - 1);
-    }
-
-    // Автоматическая смена
-    function startAutoSlide() {
-        autoSlide = setInterval(nextSlide, 4000);
-    }
-
-    // Перезапускаем таймер после ручного переключения
-    function restartAutoSlide() {
-        clearInterval(autoSlide);
-        startAutoSlide();
-    }
-
-    // Кнопка назад
-    if (prevButton) {
-        prevButton.addEventListener("click", event => {
-            event.stopPropagation();
-            previousSlide();
-            restartAutoSlide();
-        });
-    }
-
-    // Кнопка вперёд
-    if (nextButton) {
-        nextButton.addEventListener("click", event => {
-            event.stopPropagation();
-            nextSlide();
-            restartAutoSlide();
-        });
-    }
-
-    // Размытый фон для каждого изображения
-    slides.forEach(slide => {
-        const img = slide.querySelector("img");
-
-        if (img) {
-            slide.style.setProperty(
-                "--handmade-bg",
-                `url("${img.src}")`
-            );
-        }
-    });
-
-    // Запускаем автоматическую смену
-    startAutoSlide();
-});
 // =========================================
 // ⭐ СЕКРЕТНЫЙ ЕЖЕДНЕВНЫЙ БОНУС
 // =========================================
@@ -1717,3 +1606,355 @@ if (
     syncServerTime();
 
 }
+// =========================================
+// ⭐ ПЕРЕКЛЮЧАТЕЛЬ РЕФЕРЕНСОВ STARKI
+// =========================================
+
+const mascotReferenceImage =
+    document.querySelector(
+        "#mascotReferenceImage"
+    );
+
+const mascotReferenceCaption =
+    document.querySelector(
+        "#mascotReferenceCaption"
+    );
+
+const mascotReferenceDots =
+    document.querySelector(
+        "#mascotReferenceDots"
+    );
+
+const mascotReferencePrev =
+    document.querySelector(
+        ".mascot-reference-prev"
+    );
+
+const mascotReferenceNext =
+    document.querySelector(
+        ".mascot-reference-next"
+    );
+
+
+if (
+    mascotReferenceImage &&
+    mascotReferenceCaption &&
+    mascotReferenceDots &&
+    mascotReferencePrev &&
+    mascotReferenceNext
+) {
+
+    const references = [
+
+        {
+            image:
+                "./image/StarkiOrig.jpg",
+
+            alt:
+                "Starki — основной референс",
+
+            title:
+                "Основной референс"
+        },
+
+        {
+            image:
+                "./image/StarkiCost.jpg",
+
+            alt:
+                "Starki — вариант костюма",
+
+            title:
+                "Вариант костюма"
+        }
+
+    ];
+
+
+    let currentReference = 0;
+
+
+    // =====================================
+    // ТОЧКИ
+    // =====================================
+
+    references.forEach(
+        (reference, index) => {
+
+            const dot =
+                document.createElement(
+                    "button"
+                );
+
+
+            dot.className =
+                "mascot-reference-dot";
+
+
+            dot.setAttribute(
+                "aria-label",
+                `Референс ${index + 1}`
+            );
+
+
+            if (index === 0) {
+
+                dot.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            dot.addEventListener(
+                "click",
+                () => {
+
+                    showReference(
+                        index
+                    );
+
+                }
+            );
+
+
+            mascotReferenceDots.appendChild(
+                dot
+            );
+
+        }
+    );
+
+
+    const referenceDots =
+        mascotReferenceDots.querySelectorAll(
+            ".mascot-reference-dot"
+        );
+
+
+    // =====================================
+    // ПОКАЗ РЕФЕРЕНСА
+    // =====================================
+
+    function showReference(index) {
+
+        if (index < 0) {
+
+            index =
+                references.length - 1;
+
+        }
+
+
+        if (
+            index >=
+            references.length
+        ) {
+
+            index = 0;
+
+        }
+
+
+        currentReference =
+            index;
+
+
+        const reference =
+            references[
+                currentReference
+            ];
+
+
+        mascotReferenceImage.style.opacity =
+            "0";
+
+
+        setTimeout(
+            () => {
+
+                mascotReferenceImage.src =
+                    reference.image;
+
+                mascotReferenceImage.alt =
+                    reference.alt;
+
+
+                mascotReferenceImage.style.opacity =
+                    "1";
+
+            },
+            150
+        );
+
+
+        mascotReferenceCaption.innerHTML =
+            `<span>${String(
+                currentReference + 1
+            ).padStart(2, "0")}</span>
+            ${reference.title}`;
+
+
+        referenceDots.forEach(
+            (dot, dotIndex) => {
+
+                dot.classList.toggle(
+                    "active",
+                    dotIndex ===
+                    currentReference
+                );
+
+            }
+        );
+
+    }
+
+
+    // =====================================
+    // НАЗАД
+    // =====================================
+
+    mascotReferencePrev.addEventListener(
+        "click",
+        () => {
+
+            showReference(
+                currentReference - 1
+            );
+
+        }
+    );
+
+
+    // =====================================
+    // ВПЕРЁД
+    // =====================================
+
+    mascotReferenceNext.addEventListener(
+        "click",
+        () => {
+
+            showReference(
+                currentReference + 1
+            );
+
+        }
+    );
+
+}
+// =========================================
+// ✨ АНИМАЦИЯ ПОЯВЛЕНИЯ БЛОКОВ
+// =========================================
+
+const revealSections = document.querySelectorAll(`
+    .about-section,
+    .new-arrivals,
+    .services-section,
+    .order-queue,
+    .mascot-reference-section,
+    .mascot-about,
+    .fanart-section,
+    .merch-section,
+    .merch-bottom,
+    .handmade-products,
+    .info-section
+`);
+
+
+const revealCards = document.querySelectorAll(`
+    .service-card,
+    .new-product-card,
+    .handmade-card,
+    .queue-column,
+    .fanart-card,
+    .merch-card
+`);
+
+
+/* =========================================
+   СЕКЦИИ
+   ========================================= */
+
+revealSections.forEach(section => {
+    section.classList.add("scroll-reveal");
+});
+
+
+/* =========================================
+   КАРТОЧКИ
+   ========================================= */
+
+revealCards.forEach((card, index) => {
+
+    card.classList.add("scroll-reveal-card");
+
+    /*
+        Небольшая задержка для каждой карточки.
+        Максимум 240 мс, чтобы они не ждали слишком долго.
+    */
+
+    const delay =
+        Math.min(index % 4, 3) * 80;
+
+    card.style.setProperty(
+        "--reveal-delay",
+        `${delay}ms`
+    );
+
+});
+
+
+/* =========================================
+   OBSERVER
+   ========================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+
+                entry.target.classList.add(
+                    "is-visible"
+                );
+
+
+                /*
+                    После появления больше
+                    не следим за элементом.
+                */
+
+                observer.unobserve(
+                    entry.target
+                );
+
+            });
+
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+
+/* =========================================
+   ЗАПУСК
+   ========================================= */
+
+document
+    .querySelectorAll(
+        ".scroll-reveal, .scroll-reveal-card"
+    )
+    .forEach(element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    });

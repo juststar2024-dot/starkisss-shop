@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Очередь заказов — Starkisss Shop ⭐</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -22,15 +26,11 @@
 
         <nav class="nav">
 
-            <a href="index.html">
-                Главная
-            </a>
-
-            <a href="index.html#about">
+            <a href="#about">
                 О магазине
             </a>
 
-            <a href="index.html#services">
+            <a href="#services">
                 Услуги на заказ
             </a>
 
@@ -38,8 +38,20 @@
                 В наличии
             </a>
 
+            <a href="queue.html">
+                Очередь заказов
+            </a>
+
             <a href="other.html">
                 Прочее
+            </a>
+
+            <a href="merch.html">
+                Мерч
+            </a>
+
+            <a href="mascot.html">
+                Маскот
             </a>
 
         </nav>
@@ -78,217 +90,133 @@
 
             <div class="queue-list">
 
-    <!-- ============================= -->
-    <!-- В ОЧЕРЕДИ -->
-    <!-- ============================= -->
 
-    <div class="queue-column">
+                <!-- ============================= -->
+                <!-- В ОЧЕРЕДИ -->
+                <!-- ============================= -->
 
-        <div class="queue-column-title">
-            <span class="queue-column-icon">✧</span>
-            <h3>В очереди</h3>
-            <span class="queue-column-count">1</span>
-        </div>
+                <div class="queue-column">
 
-        <div class="queue-column-list">
+                    <div class="queue-column-title">
 
-            <article class="queue-card">
+                        <span class="queue-column-icon">
+                            ✧
+                        </span>
 
-                <div class="queue-number">
-                    #001
-                </div>
+                        <h3>
+                            В очереди
+                        </h3>
 
-                <div class="queue-info">
+                        <span class="queue-column-count">
+                            0
+                        </span>
 
-                    <h3>
-                        Значки + 3D стикеры
-                    </h3>
+                    </div>
 
-                    <p>
-                        Значок квадрат; значок 58 мм;
-                        значок 32 мм; 3D стикер сердечко;
-                        3D стикер квадрат.
-                    </p>
+                    <div
+                        class="queue-column-list"
+                        data-status="В очереди"
+                    ></div>
 
                 </div>
 
-            </article>
 
-        </div>
+                <!-- ============================= -->
+                <!-- ИЗГОТАВЛИВАЕМ -->
+                <!-- ============================= -->
 
-    </div>
+                <div class="queue-column">
 
+                    <div class="queue-column-title">
 
-    <!-- ============================= -->
-    <!-- ИЗГОТАВЛИВАЕМ -->
-    <!-- ============================= -->
+                        <span class="queue-column-icon">
+                            ✦
+                        </span>
 
-    <div class="queue-column">
+                        <h3>
+                            Изготавливаем
+                        </h3>
 
-        <div class="queue-column-title">
-            <span class="queue-column-icon">✦</span>
-            <h3>Изготавливаем</h3>
-            <span class="queue-column-count">3</span>
-        </div>
+                        <span class="queue-column-count">
+                            0
+                        </span>
 
-        <div class="queue-column-list">
+                    </div>
 
-            <article class="queue-card">
-
-                <div class="queue-number">
-                    #002
-                </div>
-
-                <div class="queue-info">
-
-                    <h3>
-                        Индивидуальный заказ
-                    </h3>
-
-                    <p>
-                        Значок 58 мм + кастомный ЮЧ.
-                    </p>
+                    <div
+                        class="queue-column-list"
+                        data-status="Изготавливаем"
+                    ></div>
 
                 </div>
 
-            </article>
 
+                <!-- ============================= -->
+                <!-- ГОТОВ К ОТПРАВКЕ -->
+                <!-- ============================= -->
 
-            <article class="queue-card">
+                <div class="queue-column">
 
-                <div class="queue-number">
-                    #004
-                </div>
+                    <div class="queue-column-title">
 
-                <div class="queue-info">
+                        <span class="queue-column-icon">
+                            ★
+                        </span>
 
-                    <h3>
-                        Индивидуальный заказ
-                    </h3>
+                        <h3>
+                            Готов к отправке
+                        </h3>
 
-                    <p>
-                        2 кастомных квадратных значка.
-                    </p>
+                        <span class="queue-column-count">
+                            0
+                        </span>
 
-                </div>
+                    </div>
 
-            </article>
-
-
-            <article class="queue-card">
-
-                <div class="queue-number">
-                    #005
-                </div>
-
-                <div class="queue-info">
-
-                    <h3>
-                        Индивидуальный заказ
-                    </h3>
-
-                    <p>
-                        Значок 44 мм; значок 58;
-                        открытка А5.
-                    </p>
+                    <div
+                        class="queue-column-list"
+                        data-status="Готов к отправке"
+                    ></div>
 
                 </div>
 
-            </article>
 
-        </div>
+                <!-- ============================= -->
+                <!-- ДОСТАВЛЯЕТСЯ -->
+                <!-- ============================= -->
 
-    </div>
+                <div class="queue-column">
 
+                    <div class="queue-column-title">
 
-    <!-- ============================= -->
-    <!-- ГОТОВ К ОТПРАВКЕ -->
-    <!-- ============================= -->
+                        <span class="queue-column-icon">
+                            ➜
+                        </span>
 
-    <div class="queue-column">
+                        <h3>
+                            Доставляется
+                        </h3>
 
-        <div class="queue-column-title">
-            <span class="queue-column-icon">★</span>
-            <h3>Готов к отправке</h3>
-            <span class="queue-column-count">2</span>
-        </div>
+                        <span class="queue-column-count">
+                            0
+                        </span>
 
-        <div class="queue-column-list">
+                    </div>
 
-            <article class="queue-card">
-
-                <div class="queue-number">
-                    #006
-                </div>
-
-                <div class="queue-info">
-
-                    <h3>
-                        Индивидуальный заказ
-                    </h3>
-
-                    <p>
-                        2 пудинга + 2 значка.
-                    </p>
+                    <div
+                        class="queue-column-list"
+                        data-status="Доставляется"
+                    ></div>
 
                 </div>
 
-            </article>
 
-            <article class="queue-card">
-
-                <div class="queue-number">
-                    #003
-                </div>
-
-                <div class="queue-info">
-
-                    <h3>
-                        Индивидуальный заказ
-                    </h3>
-
-                    <p>
-                        Брелок-сердечко с карабином
-                        золотого сердца.
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-
-    <!-- ============================= -->
-    <!-- ДОСТАВЛЯЕТСЯ -->
-    <!-- ============================= -->
-
-    <div class="queue-column">
-
-        <div class="queue-column-title">
-            <span class="queue-column-icon">➜</span>
-            <h3>Доставляется</h3>
-            <span class="queue-column-count">0</span>
-        </div>
-
-        <div class="queue-column-list">
-
-            <div class="queue-empty">
-                <span>✦</span>
-                <p>
-                    Пока здесь<br>
-                    пусто
-                </p>
             </div>
 
-        </div>
 
-    </div>
-
-</div>
-
+            <!-- ============================= -->
+            <!-- FOOTER -->
+            <!-- ============================= -->
 
             <div class="queue-footer">
 
@@ -310,7 +238,17 @@
     </main>
 
 
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- ОСНОВНОЙ СКРИПТ САЙТА -->
+
     <script src="script.js"></script>
+
+    <!-- ОЧЕРЕДЬ ИЗ SUPABASE -->
+
+    <script src="queue.js"></script>
 
 </body>
 

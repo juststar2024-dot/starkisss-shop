@@ -2,52 +2,98 @@
 <html lang="ru">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Хендмейд в наличии — Starkisss Shop</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Хендмейд в наличии — Starkisss Shop
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- ================= HEADER ================= -->
 
     <header class="header">
 
-<a href="index.html" class="logo">
-    Starkisss <span>✦</span>
-</a>
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Starkisss <span>✦</span>
+        </a>
 
-      <nav class="nav">
 
-    <a href="index.html#about">
-        О магазине
-    </a>
+        <nav class="nav">
 
-    <a href="index.html#services">
-        Услуги на заказ
-    </a>
+            <a href="index.html">
+                Главная
+            </a>
 
-    <a href="handmade.html" class="active">
-        В наличии
-    </a>
-<a href="other.html">
-    Прочее
-</a>
-</nav>
+            <a href="index.html#about">
+                О магазине
+            </a>
 
-        <button class="theme-button">
+            <a href="index.html#services">
+                Услуги на заказ
+            </a>
+
+            <a
+                href="handmade.html"
+                class="active"
+            >
+                В наличии
+            </a>
+
+            <a href="queue.html">
+                Очередь заказов
+            </a>
+
+            <a href="merch.html">
+                Мерч
+            </a>
+
+            <a href="mascot.html">
+                Маскот
+            </a>
+
+            <a href="other.html">
+                Прочее
+            </a>
+
+        </nav>
+
+
+        <button
+            class="theme-button"
+            type="button"
+        >
             ☀
         </button>
 
     </header>
 
 
+
     <!-- ================= HANDMADE ================= -->
 
     <main class="handmade-page">
+
+
+        <!-- ================= HERO ================= -->
 
         <section class="handmade-hero">
 
@@ -55,21 +101,29 @@
                 ✦ HANDMADE ✦
             </p>
 
+
             <h1>
                 Хендмейд<br>
                 <span>в наличии</span>
             </h1>
 
+
             <p class="handmade-description">
+
                 Уникальные изделия, которые уже готовы
                 отправиться к своему новому владельцу ✨
+
             </p>
 
+
             <div class="handmade-note">
+
                 ⭐ Каждый экземпляр — особенный
+
             </div>
 
         </section>
+
 
 
         <!-- ================= PRODUCTS ================= -->
@@ -78,326 +132,39 @@
 
             <div class="handmade-section-title">
 
-                <span>✦</span>
+                <span>
+                    ✦
+                </span>
 
                 <h2>
                     Сейчас в магазине
                 </h2>
 
-                <span>✦</span>
+                <span>
+                    ✦
+                </span>
 
             </div>
 
 
             <p class="handmade-section-subtitle">
+
                 Эти вещи существуют в единственном экземпляре
                 или в очень ограниченном количестве.
+
             </p>
 
 
-            <div class="handmade-products">
+            <!-- СЮДА JAVASCRIPT ЗАГРУЗИТ ТОВАРЫ -->
 
+            <div
+                class="handmade-products"
+                id="handmadeProducts"
+            ></div>
 
-                <!-- ============================= -->
-<!-- ТОВАР 1 — G-SEAL -->
-<!-- ============================= -->
-
-<article class="handmade-card">
-
-    <div class="handmade-image">
-
-        <div class="handmade-gallery">
-
-            <div class="handmade-slide active">
-                <img
-                    src="./image/G-Seal2.webp"
-                    alt="G-Seal"
-                >
-            </div>
-
-            <div class="handmade-slide">
-                <img
-                    src="./image/G-Seal1.jpg"
-                    alt="G-Seal"
-                >
-            </div>
-
-            <div class="handmade-slide">
-                <img
-                    src="./image/G-Seal3.jpg"
-                    alt="G-Seal"
-                >
-            </div>
-
-            <button class="handmade-gallery-prev">
-                ‹
-            </button>
-
-            <button class="handmade-gallery-next">
-                ›
-            </button>
-
-            <div class="handmade-gallery-dots"></div>
-
-        </div>
-
-        <div class="handmade-badge">
-            В НАЛИЧИИ
-        </div>
-
-    </div>
-
-
-    <div class="handmade-info">
-
-        <p class="handmade-label">
-            ✦ UNIQUE ✦
-        </p>
-
-        <h3>
-            ГАЧА "Тюленьчики"
-        </h3>
-
-        <p>
-            Любите рандом? Купите этих милых тюленьчиков!
-        </p>
-        <p>
-            Каждый тюленьчик светится, а ещё очень мило висит на сумке :3
-        </p>
-
-
-        <div class="handmade-bottom">
-
-            <strong>
-                165 ₽
-            </strong>
-
-            <div class="handmade-buttons">
-
-                <a
-                    href="https://t.me/starkisss_shop/4283"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Узнать подробнее
-                </a>
-
-                <a
-                    href="https://www.wildberries.ru/catalog/1461356138/detail.aspx?targetUrl=GP"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Купить на WB
-                </a>
-
-                <span class="handmade-unavailable">
-                    Ozon — скоро
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</article>
-
-
-                <!-- ============================= -->
-<!-- ТОВАР 2 — CAPI -->
-<!-- ============================= -->
-
-<article class="handmade-card">
-
-    <div class="handmade-image">
-
-        <div class="handmade-gallery">
-
-            <div class="handmade-slide active">
-                <img
-                    src="./image/Capi1.jpg"
-                    alt="Capi"
-                >
-            </div>
-
-            <div class="handmade-slide">
-                <img
-                    src="./image/Capi2.jpg"
-                    alt="Capi"
-                >
-            </div>
-
-            <button class="handmade-gallery-prev">
-                ‹
-            </button>
-
-            <button class="handmade-gallery-next">
-                ›
-            </button>
-
-            <div class="handmade-gallery-dots"></div>
-
-        </div>
-
-        <div class="handmade-badge">
-            В НАЛИЧИИ
-        </div>
-
-    </div>
-
-
-    <div class="handmade-info">
-
-        <p class="handmade-label">
-            ✦ UNIQUE ✦
-        </p>
-
-        <h3>
-            Брелок "Капибара"
-        </h3>
-
-        <p>
-            14 см в длину с карабином.
-        </p>
-         <p>
-            Держите подальше от сладостей, иначе Капи ничего не оставит.
-        </p>
-
-        <div class="handmade-bottom">
-
-            <strong>
-                350 ₽
-            </strong>
-
-            <div class="handmade-buttons">
-
-                <a
-                    href="https://t.me/starkisss_shop/4270"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Узнать подробнее
-                </a>
-
-                <span class="handmade-unavailable">
-                    WB — скоро
-                </span>
-
-                <span class="handmade-unavailable">
-                    Ozon — скоро
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</article>
-
-
-                <!-- ============================= -->
-<!-- ТОВАР 3 — JOMINI -->
-<!-- ============================= -->
-
-<article class="handmade-card">
-
-    <div class="handmade-image">
-
-        <div class="handmade-gallery">
-
-            <div class="handmade-slide active">
-                <img
-                    src="./image/JoMini1.jpg"
-                    alt="JoMini"
-                >
-            </div>
-
-            <div class="handmade-slide">
-                <img
-                    src="./image/JoMini2.jpg"
-                    alt="JoMini"
-                >
-            </div>
-
-            <div class="handmade-slide">
-                <img
-                    src="./image/JoMini3.jpg"
-                    alt="JoMini"
-                >
-            </div>
-
-            <button class="handmade-gallery-prev">
-                ‹
-            </button>
-
-            <button class="handmade-gallery-next">
-                ›
-            </button>
-
-            <div class="handmade-gallery-dots"></div>
-
-        </div>
-
-        <div class="handmade-badge">
-            В НАЛИЧИИ
-        </div>
-
-    </div>
-
-
-    <div class="handmade-info">
-
-        <p class="handmade-label">
-            ✦ UNIQUE ✦
-        </p>
-
-        <h3>
-            Брелки JoJо
-        </h3>
-
-        <p>
-            12 см в длину с карабином. Некоторые детали светятся!!
-        </p>
-         <p>
-            Остались в наличии: Джонатан, Джозеф, Джоске, Джолин, Джонни.
-        </p>
-
-        <div class="handmade-bottom">
-
-            <strong>
-                180 ₽
-            </strong>
-
-            <div class="handmade-buttons">
-
-                <a
-                    href="https://t.me/starkisss_shop/4264"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Узнать подробнее
-                </a>
-
-                <span class="handmade-unavailable">
-                    WB — скоро
-                </span>
-
-                <span class="handmade-unavailable">
-                    Ozon — скоро
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</article>
-
-            </div>
 
         </section>
+
 
 
         <!-- ================= EMPTY / FUTURE ================= -->
@@ -408,49 +175,75 @@
                 ✦
             </div>
 
+
             <h2>
                 Здесь появляются новые вещи ⭐
             </h2>
 
+
             <p>
+
                 Когда что-то из хендмейда отправляется
                 к своему владельцу, карточка исчезает,
                 а на её месте может появиться новая.
+
             </p>
 
+
             <a href="index.html#services">
+
                 🛠 Сделать что-нибудь на заказ
+
             </a>
 
         </section>
 
+
     </main>
 
 
-   <!-- ================= LIKES MASCOT ================= -->
 
-<div class="likes-mascot">
+    <!-- ================= LIKES MASCOT ================= -->
 
-    <div class="likes-message">
-        Пссс... Хочешь узнать, где я закупаю материалы?~
+    <div class="likes-mascot">
+
+        <div class="likes-message">
+
+            Пссс... Хочешь узнать, где я закупаю материалы?~
+
+        </div>
+
+
+        <a
+            href="https://t.me/alimade_cf"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <img
+                src="./image/likes.png"
+                alt="Starki"
+            >
+
+        </a>
+
     </div>
 
-    <a
-        href="https://t.me/alimade_cf"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img
-            src="./image/likes.png"
-            alt="Starki"
-        >
-    </a>
 
-</div>
 
-<!-- ================= SCRIPT ================= -->
+    <!-- ================= SCRIPTS ================= -->
 
-<script src="script.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <script src="handmade-products.js"></script>
+
+
+    <script src="script.js"></script>
+
 
 </body>
+
 </html>

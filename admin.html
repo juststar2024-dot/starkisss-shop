@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Starkisss Shop — Админка</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         АДМИНКА
+    ========================== -->
+
+    <main class="admin-page">
+
+        <div class="admin-container">
+
+            <div class="admin-star">✦</div>
+
+            <p class="small-title">
+                STARKISSS SHOP
+            </p>
+
+            <h1 class="admin-title">
+                Админка
+                <span>✦</span>
+            </h1>
+
+            <p class="admin-subtitle">
+                Управление очередью заказов
+            </p>
+
+
+            <!-- =========================
+                 ФОРМА ВХОДА
+            ========================== -->
+
+            <section
+                class="admin-login"
+                id="adminLogin"
+            >
+
+                <h2>
+                    Вход
+                </h2>
+
+                <p>
+                    Эта страница предназначена
+                    только для владельца магазина.
+                </p>
+
+                <form id="loginForm">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Твой email"
+                        required
+                    >
+
+
+                    <label for="loginPassword">
+                        Пароль
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Твой пароль"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="admin-main-button"
+                    >
+                        ✦ Войти
+                    </button>
+
+                    <p
+                        class="admin-error"
+                        id="loginError"
+                    ></p>
+
+                </form>
+
+            </section>
+
+
+            <!-- =========================
+                 ПАНЕЛЬ УПРАВЛЕНИЯ
+            ========================== -->
+
+            <section
+                class="admin-dashboard"
+                id="adminDashboard"
+                hidden
+            >
+
+                <div class="admin-dashboard-header">
+
+                    <div>
+
+                        <p class="small-title">
+                            ПАНЕЛЬ УПРАВЛЕНИЯ
+                        </p>
+
+                        <h2>
+                            Очередь заказов
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="admin-logout"
+                        id="logoutButton"
+                    >
+                        Выйти
+                    </button>
+
+                </div>
+
+
+                <!-- Добавить заказ -->
+
+                <button
+                    type="button"
+                    class="admin-add-button"
+                    id="addOrderButton"
+                >
+                    ＋ Добавить заказ
+                </button>
+
+
+                <!-- Форма заказа -->
+
+                <form
+                    class="admin-order-form"
+                    id="orderForm"
+                    hidden
+                >
+
+                    <h3 id="orderFormTitle">
+                        Новый заказ
+                    </h3>
+
+
+                    <input
+                        type="hidden"
+                        id="orderId"
+                    >
+
+
+                    <label for="orderNumber">
+                        Номер заказа
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderNumber"
+                        placeholder="#007"
+                        required
+                    >
+
+
+                    <label for="orderTitle">
+                        Название
+                    </label>
+
+                    <input
+                        type="text"
+                        id="orderTitle"
+                        placeholder="Индивидуальный заказ"
+                        required
+                    >
+
+
+                    <label for="orderDescription">
+                        Описание
+                    </label>
+
+                    <textarea
+                        id="orderDescription"
+                        placeholder="Что входит в заказ?"
+                        rows="4"
+                    ></textarea>
+
+
+                    <label for="orderStatus">
+                        Статус
+                    </label>
+
+                    <select id="orderStatus">
+
+                        <option value="В очереди">
+                            В очереди
+                        </option>
+
+                        <option value="Изготавливаем">
+                            Изготавливаем
+                        </option>
+
+                        <option value="Готов к отправке">
+                            Готов к отправке
+                        </option>
+
+                        <option value="Доставляется">
+                            Доставляется
+                        </option>
+
+                    </select>
+
+
+                    <label for="orderPosition">
+                        Позиция в колонке
+                    </label>
+
+                    <input
+                        type="number"
+                        id="orderPosition"
+                        value="1"
+                        min="1"
+                    >
+
+
+                    <div class="admin-form-buttons">
+
+                        <button
+                            type="submit"
+                            class="admin-main-button"
+                        >
+                            ✦ Сохранить
+                        </button>
+
+                        <button
+                            type="button"
+                            class="admin-cancel-button"
+                            id="cancelOrderButton"
+                        >
+                            Отмена
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- Список заказов -->
+
+                <div
+                    class="admin-orders"
+                    id="adminOrders"
+                >
+
+                    <p class="admin-loading">
+                        Загружаем заказы...
+                    </p>
+
+                </div>
+
+                <!-- =========================
+     ТОВАРЫ В НАЛИЧИИ
+========================== -->
+
+<section class="admin-products-section">
+
+    <div class="admin-dashboard-header">
+
+        <div>
+
+            <p class="small-title">
+                КАТАЛОГ
+            </p>
+
+            <h2>
+                Товары в наличии
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- Добавить товар -->
+
+    <button
+        type="button"
+        class="admin-add-button"
+        id="addProductButton"
+    >
+        ＋ Добавить товар
+    </button>
+
+
+    <!-- Форма товара -->
+
+    <form
+        class="admin-product-form"
+        id="productForm"
+        hidden
+    >
+
+        <h3 id="productFormTitle">
+            Новый товар
+        </h3>
+
+
+        <input
+            type="hidden"
+            id="productId"
+        >
+
+
+        <!-- Название -->
+
+        <label for="productTitle">
+            Название
+        </label>
+
+        <input
+            type="text"
+            id="productTitle"
+            placeholder="Например: G-Seal"
+            required
+        >
+<!-- КАТЕГОРИЯ -->
+
+<label for="productCategory">
+    Раздел
+</label>
+
+<select id="productCategory">
+
+    <option value="В наличии">
+        В наличии
+    </option>
+
+    <option value="Мерч магазина">
+        Мерч магазина
+    </option>
+
+    <option value="Фандомный мерч">
+        Фандомный мерч
+    </option>
+
+    <option value="ЮЧ">
+        ЮЧ
+    </option>
+
+</select>
+
+        <!-- Цена -->
+
+        <label for="productPrice">
+            Цена
+        </label>
+
+        <input
+            type="text"
+            id="productPrice"
+            placeholder="300 ₽"
+            required
+        >
+
+
+        <!-- Описание -->
+
+        <label for="productDescription">
+            Описание
+        </label>
+
+        <textarea
+            id="productDescription"
+            placeholder="Короткое описание товара"
+            rows="4"
+        ></textarea>
+
+
+        <!-- ФОТО -->
+
+        <label for="productPhoto1">
+            Фото 1
+        </label>
+
+        <input
+            type="file"
+            id="productPhoto1"
+            accept="image/*"
+        >
+
+
+        <label for="productPhoto2">
+            Фото 2
+        </label>
+
+        <input
+            type="file"
+            id="productPhoto2"
+            accept="image/*"
+        >
+
+
+        <label for="productPhoto3">
+            Фото 3
+        </label>
+
+        <input
+            type="file"
+            id="productPhoto3"
+            accept="image/*"
+        >
+
+
+        <!-- ССЫЛКИ -->
+
+        <label for="productTelegram">
+            Подробнее
+        </label>
+
+        <input
+            type="url"
+            id="productTelegram"
+            placeholder="https://t.me/..."
+        >
+
+
+        <label for="productWB">
+            Wildberries
+        </label>
+
+        <input
+            type="url"
+            id="productWB"
+            placeholder="https://www.wildberries.ru/..."
+        >
+
+
+        <label for="productOzon">
+            Ozon
+        </label>
+
+        <input
+            type="url"
+            id="productOzon"
+            placeholder="https://ozon.ru/..."
+        >
+
+
+        <!-- СТАТУС -->
+
+        <label for="productStatus">
+            Статус
+        </label>
+
+        <select id="productStatus">
+
+            <option value="В наличии">
+                В наличии
+            </option>
+
+            <option value="Скоро">
+                Скоро
+            </option>
+
+            <option value="Скрыт">
+                Скрыт
+            </option>
+
+        </select>
+
+
+        <!-- ПОЗИЦИЯ -->
+
+        <label for="productPosition">
+            Позиция
+        </label>
+
+        <input
+            type="number"
+            id="productPosition"
+            value="1"
+            min="1"
+        >
+
+
+        <!-- КНОПКИ -->
+
+        <div class="admin-form-buttons">
+
+            <button
+                type="submit"
+                class="admin-main-button"
+            >
+                ✦ Сохранить товар
+            </button>
+
+
+            <button
+                type="button"
+                class="admin-cancel-button"
+                id="cancelProductButton"
+            >
+                Отмена
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- СПИСОК ТОВАРОВ -->
+
+    <div
+        class="admin-products"
+        id="adminProducts"
+    >
+
+        <p class="admin-loading">
+            Загружаем товары...
+        </p>
+
+    </div>
+
+</section>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+
+    <!-- =========================
+         АДМИНСКИЙ JS
+    ========================== -->
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
