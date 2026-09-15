@@ -8561,3 +8561,109 @@ h1 span {
 .handmade-slide::before {
     transition: opacity 0.65s ease-in-out;
 }
+/* =========================================
+   📱 НОВИНКИ — КАРУСЕЛЬ НА ТЕЛЕФОНЕ
+========================================= */
+
+@media (max-width: 700px) {
+
+    .new-products {
+        display: flex;
+        gap: 18px;
+
+        overflow-x: auto;
+        overflow-y: visible;
+
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+        padding: 10px 8px 25px;
+
+        /* Убираем стандартный скроллбар */
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .new-products::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    /* Одна карточка = почти весь экран */
+
+    .new-product-card {
+        flex: 0 0 88%;
+
+        scroll-snap-align: center;
+
+        min-width: 0;
+
+        /* Убираем наклоны на телефоне */
+        transform: rotate(0deg) !important;
+
+        animation-delay: 0s;
+    }
+
+
+    /* Не даём hover-эффекту мешать на телефоне */
+
+    .new-product-card:hover {
+        transform: none;
+    }
+
+
+    /* Чуть увеличиваем область с изображением */
+
+    .new-product-image {
+        height: 260px;
+    }
+
+
+    /* Текст */
+
+    .new-product-info {
+        padding: 20px;
+    }
+
+    .new-product-info h3 {
+        font-size: 21px;
+    }
+
+    .new-product-info p:not(.new-product-label) {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+}
+@media (max-width: 650px) {
+    .handmade-products {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+    }
+
+    .handmade-card {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .handmade-image-wrapper {
+        display: block !important;
+        width: 100% !important;
+        height: 260px !important;
+    }
+
+    .handmade-gallery {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .handmade-slide.active {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
