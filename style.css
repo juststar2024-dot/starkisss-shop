@@ -8714,3 +8714,42 @@ h1 span {
         padding: 22px;
     }
 }
+/* ================================= */
+/* ДИАГНОСТИКА МОБИЛЬНЫХ КАРТОЧЕК */
+/* ================================= */
+
+@media (max-width: 650px) {
+    .handmade-products-section {
+        overflow: visible !important;
+    }
+
+    .handmade-products {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        overflow: visible !important;
+    }
+
+    .handmade-card {
+        display: block !important;
+        position: relative !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        height: auto !important;
+        min-height: 300px !important;
+    }
+
+    .handmade-image-wrapper {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        height: 300px !important;
+    }
+
+    .handmade-info {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}
