@@ -692,3 +692,9 @@ function escapeHTML(
 // =========================================
 
 loadHandmadeProducts();
+setTimeout(() => {
+    alert(
+        "TEST: карточек найдено: " +
+        document.querySelectorAll(".handmade-card").length
+    );
+}, 3000);
