@@ -8667,19 +8667,50 @@ h1 span {
         visibility: visible !important;
     }
 }
-/* ТЕСТ ВИДИМОСТИ КАРТОЧЕК */
+/* ========================= */
+/* ИСПРАВЛЕНИЕ КАРТОЧЕК */
+/* ========================= */
 
 .handmade-products {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
 }
 
 .handmade-card {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    min-height: 500px !important;
-    background: red !important;
+    display: block;
+    min-width: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+
+@media (max-width: 900px) {
+    .handmade-products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .handmade-products {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+    }
+
+    .handmade-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .handmade-image-wrapper {
+        width: 100%;
+        height: 300px;
+    }
+
+    .handmade-info {
+        padding: 22px;
+    }
 }
