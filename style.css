@@ -8671,3 +8671,19 @@ h1 span {
 body {
     outline: 10px solid red !important;
 }
+/* TEST CSS */
+body::after {
+    content: "🔥 CSS TEST РАБОТАЕТ 🔥";
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    padding: 15px 25px;
+    background: yellow;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    border: 5px solid red;
+    border-radius: 15px;
+}
