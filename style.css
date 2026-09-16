@@ -8667,36 +8667,19 @@ h1 span {
         visibility: visible !important;
     }
 }
-/* TEST MOBILE */
-body {
-    outline: 10px solid red !important;
-}
-/* TEST CSS */
-body::after {
-    content: "🔥 CSS TEST РАБОТАЕТ 🔥";
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999999;
-    padding: 15px 25px;
-    background: yellow;
-    color: red;
-    font-size: 24px;
-    font-weight: bold;
-    border: 5px solid red;
-    border-radius: 15px;
-}
-/* TEST HANDMADE CONTAINER */
+/* ТЕСТ ВИДИМОСТИ КАРТОЧЕК */
+
 .handmade-products {
-    background: red !important;
-    min-height: 500px !important;
-    display: block !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .handmade-card {
-    background: yellow !important;
-    min-height: 300px !important;
-    opacity: 1 !important;
+    display: block !important;
     visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 500px !important;
+    background: red !important;
 }
