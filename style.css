@@ -8245,7 +8245,7 @@ h1 span {
     }
 }
 /* =========================================
-   💕 LIKES — ПАСХАЛКА В КОНЦЕ СТРАНИЦЫ
+   💕 LIKES — ПАСХАЛКА В КОНЦЕ HANDMADE
 ========================================= */
 
 .likes-mascot {
@@ -8257,12 +8257,17 @@ h1 span {
     flex-direction: column;
     align-items: center;
 
-    margin-top: 80px;
+    margin: 80px auto 0;
     padding: 30px 20px 60px;
 
     text-align: center;
 
-    overflow: hidden;
+    z-index: 2;
+}
+
+
+.likes-mascot > a {
+    display: block;
 }
 
 
@@ -8274,9 +8279,9 @@ h1 span {
 
     margin: 0 auto;
 
-    animation: likesFloat 3s ease-in-out infinite;
-
     cursor: pointer;
+
+    animation: likesFloat 3s ease-in-out infinite;
 
     transition:
         transform .3s ease,
