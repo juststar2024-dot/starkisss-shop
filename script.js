@@ -1856,7 +1856,6 @@ const revealSections = document.querySelectorAll(`
     .fanart-section,
     .merch-section,
     .merch-bottom,
-    .handmade-products,
     .info-section
 `);
 
@@ -1864,7 +1863,6 @@ const revealSections = document.querySelectorAll(`
 const revealCards = document.querySelectorAll(`
     .service-card,
     .new-product-card,
-    .handmade-card,
     .queue-column,
     .fanart-card,
     .merch-card
