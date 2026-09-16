@@ -8753,3 +8753,51 @@ h1 span {
         opacity: 1 !important;
     }
 }
+/* 🔎 ВРЕМЕННАЯ ПРОВЕРКА */
+
+@media (max-width: 650px) {
+
+    .handmade-card {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 500px !important;
+        overflow: visible !important;
+    }
+
+    .handmade-image-wrapper {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        height: 300px !important;
+    }
+
+    .handmade-gallery {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 300px !important;
+    }
+
+    .handmade-slide {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 300px !important;
+    }
+
+    .handmade-slide.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .handmade-info {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        min-height: 180px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
