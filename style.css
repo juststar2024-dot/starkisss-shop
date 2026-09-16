@@ -8801,3 +8801,20 @@ h1 span {
         visibility: visible !important;
     }
 }
+@media (max-width: 650px) {
+    #handmadeProducts {
+        position: relative !important;
+        z-index: 999999 !important;
+        background: lime !important;
+        border: 10px solid red !important;
+        min-height: 1000px !important;
+    }
+
+    #handmadeProducts .handmade-card {
+        position: relative !important;
+        z-index: 1000000 !important;
+        background: yellow !important;
+        border: 10px solid blue !important;
+        min-height: 500px !important;
+    }
+}
