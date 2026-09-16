@@ -8673,3 +8673,9 @@ h1 span {
         outline: 10px solid red !important;
     }
 }
+/* TEST MOBILE */
+@media (max-width: 650px) {
+    body {
+        outline: 10px solid red !important;
+    }
+}
