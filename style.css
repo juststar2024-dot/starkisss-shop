@@ -8667,3 +8667,9 @@ h1 span {
         visibility: visible !important;
     }
 }
+/* TEST MOBILE */
+@media (max-width: 650px) {
+    body {
+        outline: 10px solid red !important;
+    }
+}
