@@ -468,32 +468,6 @@ if (thanksMascot && thanksSpeech) {
 }
 
 
-// =========================
-// 💕 LIKES MASCOT
-// =========================
-
-const likesMascot =
-    document.querySelector(".likes-mascot");
-
-if (likesMascot) {
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 300) {
-
-            likesMascot.classList.add("show");
-
-        } else {
-
-            likesMascot.classList.remove("show");
-
-        }
-
-    });
-
-}
-
-
 /* =========================================
    ГАЛЕРЕЯ НОВИНОК
    ========================================= */
@@ -1956,3 +1930,150 @@ document
         );
 
     });
+// =========================================
+// 📱 МОБИЛЬНОЕ БОКОВОЕ МЕНЮ
+// =========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const mobileMenuButton =
+            document.getElementById(
+                "mobileMenuButton"
+            );
+
+        const mobileMenuOverlay =
+            document.getElementById(
+                "mobileMenuOverlay"
+            );
+
+        const mobileMenuClose =
+            document.getElementById(
+                "mobileMenuClose"
+            );
+
+
+        // Если элементов нет —
+        // просто ничего не делаем
+
+        if (
+            !mobileMenuButton ||
+            !mobileMenuOverlay ||
+            !mobileMenuClose
+        ) {
+            return;
+        }
+
+
+        // ОТКРЫТЬ МЕНЮ
+
+        mobileMenuButton.addEventListener(
+            "click",
+            () => {
+
+                mobileMenuOverlay.classList.add(
+                    "active"
+                );
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+
+        // ЗАКРЫТЬ ПО КРЕСТИКУ
+
+        mobileMenuClose.addEventListener(
+            "click",
+            () => {
+
+                mobileMenuOverlay.classList.remove(
+                    "active"
+                );
+
+                document.body.style.overflow =
+                    "";
+
+            }
+        );
+
+
+        // ЗАКРЫТЬ ПО КЛИКУ ВНЕ ПАНЕЛИ
+
+        mobileMenuOverlay.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    mobileMenuOverlay
+                ) {
+
+                    mobileMenuOverlay.classList.remove(
+                        "active"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+                }
+
+            }
+        );
+
+
+        // ЗАКРЫТЬ ПО КЛИКУ НА ССЫЛКУ
+
+        const mobileMenuLinks =
+            mobileMenuOverlay.querySelectorAll(
+                ".mobile-menu-nav a"
+            );
+
+
+        mobileMenuLinks.forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        mobileMenuOverlay.classList.remove(
+                            "active"
+                        );
+
+                        document.body.style.overflow =
+                            "";
+
+                    }
+                );
+
+            }
+        );
+
+
+        // ESC
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    mobileMenuOverlay.classList.remove(
+                        "active"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+                }
+
+            }
+        );
+
+    }
+);
