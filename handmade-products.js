@@ -136,6 +136,31 @@ function renderHandmadeProducts(
     // Запускаем галереи после создания карточек
     initHandmadeGalleries();
 
+    // =========================================
+// ПЕРЕХОД К ТОВАРУ ИЗ ПОИСКА
+// =========================================
+
+const targetId = window.location.hash.substring(1);
+
+if (targetId) {
+
+    const target = document.getElementById(targetId);
+
+    if (target) {
+
+        setTimeout(() => {
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 100);
+
+    }
+
+}
+
 }
 
 
@@ -155,6 +180,9 @@ function createHandmadeCard(
 
     card.className =
         "handmade-card";
+
+        card.id =
+    `product-${product.id}`;
 
 
     // -------------------------------------

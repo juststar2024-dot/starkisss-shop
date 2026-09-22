@@ -1015,6 +1015,9 @@ const productPosition =
 const productCategory =
     document.getElementById("productCategory");
 
+    const productPage = 
+    document.getElementById("productPage");
+
 const adminProducts =
     document.getElementById("adminProducts");
 
@@ -1302,6 +1305,9 @@ if (addProductButton) {
 
             productStatus.value =
                 "В наличии";
+
+                productPage.value = 
+    "handmade.html";
 
 
             productPosition.value =
@@ -1620,19 +1626,20 @@ if (productForm) {
                 // -------------------------
                 // ДАННЫЕ ТОВАРА
                 // -------------------------
-const productData = {
-    title,
-    description,
-    price,
-    photo_1: photo1,
-    photo_2: photo2,
-    photo_3: photo3,
-    telegram_url: telegram || null,
-    wildberries_url: wb || null,
-    ozon_url: ozon || null,
-    status,
-    position,
-    category: productCategory.value
+const productData = { 
+    title, 
+    description, 
+    price, 
+    photo_1: photo1, 
+    photo_2: photo2, 
+    photo_3: photo3, 
+    telegram_url: telegram || null, 
+    wildberries_url: wb || null, 
+    ozon_url: ozon || null, 
+    status, 
+    position, 
+    category: productCategory.value,
+    page: productPage.value
 };
 
 
@@ -1899,6 +1906,9 @@ async function editProduct(id) {
 
     productCategory.value = 
         data.category || "В наличии";
+
+        productPage.value = 
+    data.page || "handmade.html";
 
 
     /*

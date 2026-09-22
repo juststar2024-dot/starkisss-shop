@@ -60,7 +60,66 @@
             ☀
         </button>
 
+        <button
+    class="search-button"
+    id="searchButton"
+    type="button"
+    aria-label="Поиск"
+>
+    🔍
+</button>
+
     </header>
+
+<!-- ================= SEARCH ================= -->
+
+<div
+    class="search-overlay"
+    id="searchOverlay"
+>
+
+    <div class="search-box">
+
+        <div class="search-header">
+
+            <h2>
+                🔍 Поиск
+            </h2>
+
+            <button
+                class="search-close"
+                id="searchClose"
+                type="button"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Найти товар..."
+            autocomplete="off"
+        >
+
+
+        <div
+            class="search-results"
+            id="searchResults"
+        >
+
+            <p class="search-hint">
+                Начни вводить название товара ✦
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 
     <main>
@@ -247,8 +306,9 @@
     <script src="script.js"></script>
 
     <!-- ОЧЕРЕДЬ ИЗ SUPABASE -->
-
+    <script src="search.js"></script>
     <script src="queue.js"></script>
+    
 
 </body>
 
