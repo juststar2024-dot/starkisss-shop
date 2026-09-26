@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Зимнее путешествие — Starkisss Shop ⭐</title>
+
+    <link rel="stylesheet" href="newyear26.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     СКРЫТЫЙ ВХОД В DEV MODE
+========================================================= -->
+
+<div id="devLogin" class="dev-login hidden">
+    <div class="dev-login-box">
+
+        <div class="dev-login-title">
+            🛠 Режим разработчика
+        </div>
+
+        <div class="dev-login-text">
+            Введи код тестировщика:
+        </div>
+
+        <input
+            type="password"
+            id="devCodeInput"
+            class="dev-code-input"
+            placeholder="Код доступа"
+            autocomplete="off"
+        >
+
+        <div class="dev-login-buttons">
+            <button id="devLoginButton">
+                Войти
+            </button>
+
+            <button id="devCancelButton">
+                Отмена
+            </button>
+        </div>
+
+    </div>
+</div>
+
+    <!-- ================= BACKGROUND ================= -->
+
+    <div class="snow-layer"></div>
+
+    <!-- ================= GAME ================= -->
+
+    <main class="game">
+
+        <!-- TOP PANEL -->
+
+        <header class="day-panel">
+
+            <div class="day-info">
+                <div class="day-number" id="dayNumber">
+                    ⭐ ДЕНЬ 1 / 15
+                </div>
+
+                <div class="day-task" id="dayTask">
+                    Задача: узнать, что случилось с созвездием...
+                </div>
+            </div>
+
+            <div class="progress-area">
+
+                <div class="progress-text">
+                    Путешествие
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= SCENE ================= -->
+
+        <section class="scene" id="scene">
+
+            <!-- Background -->
+
+            <div class="scene-background" id="sceneBackground"></div>
+
+
+            <!-- Characters -->
+
+            <div class="character character-left hidden" id="characterLeft">
+                <img id="characterLeftImage" src="" alt="">
+            </div>
+
+            <div class="character character-right hidden" id="characterRight">
+                <img id="characterRightImage" src="" alt="">
+            </div>
+
+
+            <!-- Story message -->
+
+            <div class="story-message hidden" id="storyMessage">
+
+                <div class="speaker" id="speaker">
+                    Старки
+                </div>
+
+                <div class="dialogue" id="dialogue">
+                    ...
+                </div>
+
+            </div>
+
+
+            <!-- Start screen -->
+
+            <div class="start-screen" id="startScreen">
+
+                <div class="start-card">
+
+                    <div class="start-star">⭐</div>
+
+                    <h1>Зимнее путешествие</h1>
+
+                    <p>
+                        Маленькое новогоднее приключение
+                        Starkisss Shop.
+                    </p>
+
+                    <p class="start-small">
+                        Введи своё имя или никнейм,
+                        чтобы отправиться в путешествие.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="nicknameInput"
+                        maxlength="20"
+                        placeholder="Твой никнейм..."
+                    >
+
+                    <button id="startButton">
+                        Начать путешествие ✨
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Continue button -->
+
+            <div class="dialogue-buttons">
+
+    <button
+        class="back-button hidden"
+        id="backButton"
+    >
+        ← Назад
+    </button>
+
+    <button
+        class="next-button hidden"
+        id="nextButton"
+    >
+        Далее →
+    </button>
+
+</div>
+
+
+            <!-- Chapter completed -->
+
+            <div
+                class="chapter-complete hidden"
+                id="chapterComplete"
+            >
+
+                <div class="complete-star">
+                    ⭐
+                </div>
+
+                <h2 id="completeTitle">
+                    День завершён!
+                </h2>
+
+                <p id="completeText">
+                    Продолжение уже совсем скоро...
+                </p>
+
+                <button id="completeButton">
+                    Продолжить
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BOTTOM UI ================= -->
+
+        <footer class="game-footer">
+
+            <button class="footer-button" id="mapButton">
+                🗺️ Карта
+            </button>
+
+            <div class="stars-counter">
+
+                <span>
+                    ⭐ <b id="storyStars">0</b>/7
+                </span>
+
+                <span>
+                    ✨ <b id="secretStars">0</b>
+                </span>
+
+            </div>
+
+            <button class="footer-button" id="journalButton">
+                📖 Дневник
+            </button>
+
+        </footer>
+
+    </main>
+
+
+    <!-- ================= MAP ================= -->
+
+    <div
+        class="overlay hidden"
+        id="mapOverlay"
+    >
+
+        <div class="overlay-card">
+
+            <button class="close-overlay" id="closeMap">
+                ×
+            </button>
+
+            <h2>🗺️ Путь</h2>
+
+            <div class="map" id="map">
+                <!-- создаётся через JS -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JOURNAL ================= -->
+
+    <div
+        class="overlay hidden"
+        id="journalOverlay"
+    >
+
+        <div class="overlay-card">
+
+            <button class="close-overlay" id="closeJournal">
+                ×
+            </button>
+
+            <h2>📖 Дневник путешествия</h2>
+
+            <div id="journalList">
+                <!-- создаётся через JS -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= TEST MODE ================= -->
+
+    <div
+    class="test-panel"
+    id="testPanel"
+>
+
+    <div class="dev-status">
+        🛠 DEV MODE АКТИВЕН
+    </div>
+
+    <div class="test-title">
+        🛠 TEST MODE
+    </div>
+
+    <select id="testDaySelect">
+    </select>
+
+    <button id="testDayButton">
+        Перейти
+    </button>
+
+    <button id="resetButton">
+        Сбросить
+    </button>
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="newyear26.js"></script>
+</body>
+</html>

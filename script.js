@@ -1934,146 +1934,84 @@ document
 // 📱 МОБИЛЬНОЕ БОКОВОЕ МЕНЮ
 // =========================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-        const mobileMenuButton =
-            document.getElementById(
-                "mobileMenuButton"
-            );
+    const button = document.getElementById("mobileMenuButton");
+    const overlay = document.getElementById("mobileMenuOverlay");
+    const close = document.getElementById("mobileMenuClose");
 
-        const mobileMenuOverlay =
-            document.getElementById(
-                "mobileMenuOverlay"
-            );
-
-        const mobileMenuClose =
-            document.getElementById(
-                "mobileMenuClose"
-            );
+    if (!button || !overlay || !close) {
+        return;
+    }
 
 
-        // Если элементов нет —
-        // просто ничего не делаем
+    // ОТКРЫТЬ
 
-        if (
-            !mobileMenuButton ||
-            !mobileMenuOverlay ||
-            !mobileMenuClose
-        ) {
-            return;
+    button.onclick = function () {
+
+        overlay.classList.add("active");
+
+        document.body.classList.add("mobile-menu-open");
+
+    };
+
+
+    // ЗАКРЫТЬ КРЕСТИКОМ
+
+    close.onclick = function () {
+
+        overlay.classList.remove("active");
+
+        document.body.classList.remove("mobile-menu-open");
+
+    };
+
+
+    // ЗАКРЫТЬ ПРИ КЛИКЕ НА ЗАТЕМНЕНИЕ
+
+    overlay.onclick = function (event) {
+
+        if (event.target === overlay) {
+
+            overlay.classList.remove("active");
+
+            document.body.classList.remove("mobile-menu-open");
+
         }
 
-
-        // ОТКРЫТЬ МЕНЮ
-
-        mobileMenuButton.addEventListener(
-            "click",
-            () => {
-
-                mobileMenuOverlay.classList.add(
-                    "active"
-                );
-
-                document.body.style.overflow =
-                    "hidden";
-
-            }
-        );
+    };
 
 
-        // ЗАКРЫТЬ ПО КРЕСТИКУ
+    // ЗАКРЫТЬ ПО ССЫЛКЕ
 
-        mobileMenuClose.addEventListener(
-            "click",
-            () => {
+    const links =
+        overlay.querySelectorAll(".mobile-menu-nav a");
 
-                mobileMenuOverlay.classList.remove(
-                    "active"
-                );
+    links.forEach(function (link) {
 
-                document.body.style.overflow =
-                    "";
+        link.onclick = function () {
 
-            }
-        );
+            overlay.classList.remove("active");
 
+            document.body.classList.remove("mobile-menu-open");
 
-        // ЗАКРЫТЬ ПО КЛИКУ ВНЕ ПАНЕЛИ
+        };
 
-        mobileMenuOverlay.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    mobileMenuOverlay
-                ) {
-
-                    mobileMenuOverlay.classList.remove(
-                        "active"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
-                }
-
-            }
-        );
+    });
 
 
-        // ЗАКРЫТЬ ПО КЛИКУ НА ССЫЛКУ
+    // ESC
 
-        const mobileMenuLinks =
-            mobileMenuOverlay.querySelectorAll(
-                ".mobile-menu-nav a"
-            );
+    document.addEventListener("keydown", function (event) {
 
+        if (event.key === "Escape") {
 
-        mobileMenuLinks.forEach(
-            link => {
+            overlay.classList.remove("active");
 
-                link.addEventListener(
-                    "click",
-                    () => {
+            document.body.classList.remove("mobile-menu-open");
 
-                        mobileMenuOverlay.classList.remove(
-                            "active"
-                        );
+        }
 
-                        document.body.style.overflow =
-                            "";
+    });
 
-                    }
-                );
-
-            }
-        );
-
-
-        // ESC
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    mobileMenuOverlay.classList.remove(
-                        "active"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
-                }
-
-            }
-        );
-
-    }
-);
+});
