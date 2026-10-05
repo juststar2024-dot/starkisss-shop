@@ -17,6 +17,7 @@ async function loadOfficialMerch() {
         return;
     }
 
+
     officialMerchProducts.innerHTML = `
         <p class="admin-loading">
             Загружаем мерч...
@@ -61,9 +62,12 @@ async function loadOfficialMerch() {
     renderOfficialMerch(data || []);
 }
 
+
+
 function renderOfficialMerch(products) {
 
     officialMerchProducts.innerHTML = "";
+
 
     if (!products.length) {
 
@@ -86,8 +90,9 @@ function renderOfficialMerch(products) {
         card.className =
             "merch-card";
 
-            card.id =
-    `product-${product.id}`;
+
+        card.id =
+            `product-${product.id}`;
 
 
         card.innerHTML = `
@@ -96,6 +101,7 @@ function renderOfficialMerch(products) {
 
                 ${
                     product.photo_1
+
                         ? `
                             <img
                                 class="merch-main-image"
@@ -103,6 +109,7 @@ function renderOfficialMerch(products) {
                                 alt="${product.title}"
                             >
                           `
+
                         : `
                             <span>
                                 ФОТО МЕРЧА
@@ -117,6 +124,7 @@ function renderOfficialMerch(products) {
 
                 ${
                     product.photo_1
+
                         ? `
                             <button
                                 type="button"
@@ -129,12 +137,14 @@ function renderOfficialMerch(products) {
                                 >
                             </button>
                           `
+
                         : ""
                 }
 
 
                 ${
                     product.photo_2
+
                         ? `
                             <button
                                 type="button"
@@ -147,12 +157,14 @@ function renderOfficialMerch(products) {
                                 >
                             </button>
                           `
+
                         : ""
                 }
 
 
                 ${
                     product.photo_3
+
                         ? `
                             <button
                                 type="button"
@@ -165,6 +177,7 @@ function renderOfficialMerch(products) {
                                 >
                             </button>
                           `
+
                         : ""
                 }
 
@@ -193,20 +206,62 @@ function renderOfficialMerch(products) {
                 </div>
 
 
-                ${
-                    product.telegram_url
-                        ? `
-                            <a
-                                href="${product.telegram_url}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="merch-button"
-                            >
-                                Подробнее ↗
-                            </a>
-                          `
-                        : ""
-                }
+                <div class="merch-links">
+
+                    ${
+                        product.telegram_url
+
+                            ? `
+                                <a
+                                    href="${product.telegram_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    Подробнее ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.wildberries_url
+
+                            ? `
+                                <a
+                                    href="${product.wildberries_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛒 WB ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.ozon_url
+
+                            ? `
+                                <a
+                                    href="${product.ozon_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛍 Ozon ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+                </div>
 
             </div>
 
@@ -217,16 +272,20 @@ function renderOfficialMerch(products) {
             .appendChild(card);
 
 
-        // =========================
+        // -----------------------------------------
         // ПЕРЕКЛЮЧЕНИЕ ФОТО
-        // =========================
+        // -----------------------------------------
 
         const mainImage =
-            card.querySelector(".merch-main-image");
+            card.querySelector(
+                ".merch-main-image"
+            );
 
 
         const thumbnails =
-            card.querySelectorAll(".merch-thumb");
+            card.querySelectorAll(
+                ".merch-thumb"
+            );
 
 
         thumbnails.forEach(thumbnail => {
@@ -246,12 +305,16 @@ function renderOfficialMerch(products) {
 
                     thumbnails.forEach(item => {
 
-                        item.classList.remove("active");
+                        item.classList.remove(
+                            "active"
+                        );
 
                     });
 
 
-                    thumbnail.classList.add("active");
+                    thumbnail.classList.add(
+                        "active"
+                    );
 
                 }
             );
@@ -259,6 +322,7 @@ function renderOfficialMerch(products) {
         });
 
     });
+
 }
 
 
@@ -325,6 +389,7 @@ async function loadFandomMerch() {
 }
 
 
+
 function renderFandomMerch(products) {
 
     fandomMerchProducts.innerHTML = "";
@@ -351,8 +416,10 @@ function renderFandomMerch(products) {
         card.className =
             "merch-card fandom-card";
 
-            card.id =
-    `product-${product.id}`;
+
+        card.id =
+            `product-${product.id}`;
+
 
         card.innerHTML = `
 
@@ -360,76 +427,19 @@ function renderFandomMerch(products) {
 
                 ${
                     product.photo_1
+
                         ? `
                             <img
-                                class="merch-main-image"
                                 src="${product.photo_1}"
                                 alt="${product.title}"
                             >
                           `
+
                         : `
                             <span>
                                 ФОТО МЕРЧА
                             </span>
                           `
-                }
-
-            </div>
-
-
-            <div class="merch-thumbnails">
-
-                ${
-                    product.photo_1
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb active"
-                                data-image="${product.photo_1}"
-                            >
-                                <img
-                                    src="${product.photo_1}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
-                }
-
-
-                ${
-                    product.photo_2
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb"
-                                data-image="${product.photo_2}"
-                            >
-                                <img
-                                    src="${product.photo_2}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
-                }
-
-
-                ${
-                    product.photo_3
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb"
-                                data-image="${product.photo_3}"
-                            >
-                                <img
-                                    src="${product.photo_3}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
                 }
 
             </div>
@@ -457,20 +467,62 @@ function renderFandomMerch(products) {
                 </div>
 
 
-                ${
-                    product.telegram_url
-                        ? `
-                            <a
-                                href="${product.telegram_url}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="merch-button"
-                            >
-                                Подробнее ↗
-                            </a>
-                          `
-                        : ""
-                }
+                <div class="merch-links">
+
+                    ${
+                        product.telegram_url
+
+                            ? `
+                                <a
+                                    href="${product.telegram_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    Подробнее ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.wildberries_url
+
+                            ? `
+                                <a
+                                    href="${product.wildberries_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛒 WB ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.ozon_url
+
+                            ? `
+                                <a
+                                    href="${product.ozon_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛍 Ozon ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+                </div>
 
             </div>
 
@@ -480,50 +532,12 @@ function renderFandomMerch(products) {
         fandomMerchProducts
             .appendChild(card);
 
-
-        // =========================
-        // ПЕРЕКЛЮЧЕНИЕ ФОТО
-        // =========================
-
-        const mainImage =
-            card.querySelector(".merch-main-image");
-
-
-        const thumbnails =
-            card.querySelectorAll(".merch-thumb");
-
-
-        thumbnails.forEach(thumbnail => {
-
-            thumbnail.addEventListener(
-                "click",
-                () => {
-
-                    if (!mainImage) {
-                        return;
-                    }
-
-
-                    mainImage.src =
-                        thumbnail.dataset.image;
-
-
-                    thumbnails.forEach(item => {
-
-                        item.classList.remove("active");
-
-                    });
-
-
-                    thumbnail.classList.add("active");
-
-                }
-            );
-
-        });
-
     });
+
 }
+
+
+
 // =========================================
 // ЮЧ — YOUR CHARACTER HERE
 // =========================================
@@ -586,6 +600,7 @@ async function loadYchMerch() {
 }
 
 
+
 function renderYchMerch(products) {
 
     ychMerchProducts.innerHTML = "";
@@ -612,8 +627,9 @@ function renderYchMerch(products) {
         card.className =
             "merch-card ych-card";
 
-            card.id =
-    `product-${product.id}`;
+
+        card.id =
+            `product-${product.id}`;
 
 
         card.innerHTML = `
@@ -622,76 +638,19 @@ function renderYchMerch(products) {
 
                 ${
                     product.photo_1
+
                         ? `
                             <img
-                                class="merch-main-image"
                                 src="${product.photo_1}"
                                 alt="${product.title}"
                             >
                           `
+
                         : `
                             <span>
                                 ФОТО ЮЧ
                             </span>
                           `
-                }
-
-            </div>
-
-
-            <div class="merch-thumbnails">
-
-                ${
-                    product.photo_1
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb active"
-                                data-image="${product.photo_1}"
-                            >
-                                <img
-                                    src="${product.photo_1}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
-                }
-
-
-                ${
-                    product.photo_2
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb"
-                                data-image="${product.photo_2}"
-                            >
-                                <img
-                                    src="${product.photo_2}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
-                }
-
-
-                ${
-                    product.photo_3
-                        ? `
-                            <button
-                                type="button"
-                                class="merch-thumb"
-                                data-image="${product.photo_3}"
-                                >
-                                <img
-                                    src="${product.photo_3}"
-                                    alt=""
-                                >
-                            </button>
-                          `
-                        : ""
                 }
 
             </div>
@@ -719,20 +678,62 @@ function renderYchMerch(products) {
                 </div>
 
 
-                ${
-                    product.telegram_url
-                        ? `
-                            <a
-                                href="${product.telegram_url}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="merch-button"
-                            >
-                                Подробнее ↗
-                            </a>
-                          `
-                        : ""
-                }
+                <div class="merch-links">
+
+                    ${
+                        product.telegram_url
+
+                            ? `
+                                <a
+                                    href="${product.telegram_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    Подробнее ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.wildberries_url
+
+                            ? `
+                                <a
+                                    href="${product.wildberries_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛒 WB ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+
+                    ${
+                        product.ozon_url
+
+                            ? `
+                                <a
+                                    href="${product.ozon_url}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="merch-button"
+                                >
+                                    🛍 Ozon ↗
+                                </a>
+                              `
+
+                            : ""
+                    }
+
+                </div>
 
             </div>
 
@@ -742,50 +743,10 @@ function renderYchMerch(products) {
         ychMerchProducts
             .appendChild(card);
 
-
-        // =========================
-        // ПЕРЕКЛЮЧЕНИЕ ФОТО
-        // =========================
-
-        const mainImage =
-            card.querySelector(".merch-main-image");
-
-
-        const thumbnails =
-            card.querySelectorAll(".merch-thumb");
-
-
-        thumbnails.forEach(thumbnail => {
-
-            thumbnail.addEventListener(
-                "click",
-                () => {
-
-                    if (!mainImage) {
-                        return;
-                    }
-
-
-                    mainImage.src =
-                        thumbnail.dataset.image;
-
-
-                    thumbnails.forEach(item => {
-
-                        item.classList.remove("active");
-
-                    });
-
-
-                    thumbnail.classList.add("active");
-
-                }
-            );
-
-        });
-
     });
+
 }
+
 
 
 // =========================================

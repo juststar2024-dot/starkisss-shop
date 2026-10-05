@@ -1166,22 +1166,40 @@ if (
 
         {
             reward: "1 значок бесплатно ✦",
-            rarity: "Очень редкая",
+            rarity: "Мега редкая",
             chance: 3
         },
 
         {
             reward: "1 3D стикер бесплатно ✦",
-            rarity: "Очень редкая",
-            chance: 2
+            rarity: "Мега редкая",
+            chance: 3
+        },
+
+        {
+            reward: "1 брелок бесплатно ✦",
+            rarity: "Мега редкая",
+            chance: 3
         },
 
         {
             reward: "Брелочек в подарок ✦",
             rarity: "Особая",
-            chance: 3
+            chance: 4
         }
 
+        {
+            reward: "Значок в подарок ✦",
+            rarity: "Особая",
+            chance: 4
+        }
+
+        {
+            reward: "3D стикер в подарок ✦",
+            rarity: "Особая",
+            chance: 4
+        }
+    
     ];
 
 
