@@ -1361,6 +1361,27 @@ function loadGame() {
     }
 }
 
+/* =========================================================
+   DATE UNLOCK
+   ========================================================= */
+
+function isDayUnlockedByDate(day) {
+    // Тестировщики могут открывать любые дни
+    if (DEV_MODE) {
+        return true;
+    }
+
+    // Текущая дата без учёта времени
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // День 1 — 1 декабря, день 2 — 2 декабря и т. д.
+    const unlockDate = new Date(2026, 11, day);
+    unlockDate.setHours(0, 0, 0, 0);
+
+    return today >= unlockDate;
+}
+
 
 /* =========================================================
    START
@@ -1398,14 +1419,23 @@ function startGame() {
    LOAD DAY
    ========================================================= */
 
+
 function loadDay(day) {
 
-    const story =
-        storyDays[day];
+    const story = storyDays[day];
 
     if (!story) {
         return;
     }
+
+    // Не разрешаем открывать будущие дни раньше срока
+    if (!isDayUnlockedByDate(day)) {
+        alert(
+            `⭐ Этот день откроется ${day} декабря 2026 года!`
+        );
+        return;
+    }
+
 
     currentDay =
         day;
@@ -1772,41 +1802,41 @@ function finishDay() {
    COMPLETE BUTTON
    ========================================================= */
 
+
 function continueAfterChapter() {
+    chapterComplete.classList.add("hidden");
 
-    chapterComplete.classList.add(
-        "hidden"
-    );
+    if (currentDay >= 15) {
+        return;
+    }
 
+    const nextDay = currentDay + 1;
 
-    /*
-       В TEST MODE можно идти дальше сразу.
-    */
-
+    // В режиме тестировщика можно переходить сразу.
     if (DEV_MODE) {
-    if (currentDay < 15) {
-        loadDay(currentDay + 1);
+        loadDay(nextDay);
+        return;
     }
-    return;
-}
 
-if (currentDay < 15) {
-    loadDay(currentDay + 1);
-}
+    // В обычном режиме проверяем дату открытия дня.
+    const today = new Date();
+    const eventStart = new Date(2026, 11, 1);
+    const unlockDate = new Date(2026, 11, nextDay);
 
+    today.setHours(0, 0, 0, 0);
 
-    /*
-       В обычном режиме здесь потом
-       будет проверка реальной даты.
-    */
+    if (today < eventStart || today < unlockDate) {
+        completeText.textContent =
+            `День ${nextDay} откроется ${nextDay} декабря! ⭐`;
 
-    if (currentDay < 15) {
-
-        loadDay(
-            currentDay + 1
-        );
+        completeButton.textContent = "Вернуться";
+        chapterComplete.classList.remove("hidden");
+        return;
     }
+
+    loadDay(nextDay);
 }
+
 
 
 /* =========================================================
@@ -1823,6 +1853,7 @@ function updateCounters() {
 }
 
 
+
 /* =========================================================
    MAP
    ========================================================= */
@@ -1831,52 +1862,45 @@ function updateMap() {
 
     map.innerHTML = "";
 
-    for (
-        let day = 1;
-        day <= 15;
-        day++
-    ) {
+    for (let day = 1; day <= 15; day++) {
 
-        const item =
-            document.createElement("div");
+        const item = document.createElement("div");
+        item.className = "map-day";
 
-        item.className =
-            "map-day";
+        const story = storyDays[day];
 
-
-        if (
-            completedDays.includes(day)
-        ) {
-
-            item.classList.add(
-                "completed"
-            );
+        if (!story) {
+            continue;
         }
 
+        const unlocked = isDayUnlockedByDate(day);
 
-        if (
-            day === currentDay
-        ) {
-
-            item.classList.add(
-                "current"
-            );
+        // Пройденный день
+        if (completedDays.includes(day)) {
+            item.classList.add("completed");
         }
 
+        // Текущий день
+        if (day === currentDay) {
+            item.classList.add("current");
+        }
 
-        const story =
-            storyDays[day];
+        // Ещё не открытый день
+        if (!unlocked) {
+            item.classList.add("locked");
+        }
 
+        const star = story.star ? "⭐" : "❄️";
 
-        const star =
-            story.star
-                ? "⭐"
-                : "❄️";
-
+        const status = completedDays.includes(day)
+            ? "Пройдено ✓"
+            : unlocked
+                ? "Доступен"
+                : "Откроется " + day + " декабря";
 
         item.innerHTML = `
             <span class="map-star">
-                ${star}
+                ${unlocked ? star : "🔒"}
             </span>
 
             <strong>
@@ -1888,12 +1912,18 @@ function updateMap() {
             <small>
                 ${story.title}
             </small>
-        `;
 
+            <br>
+
+            <small class="map-status">
+                ${status}
+            </small>
+        `;
 
         map.appendChild(item);
     }
 }
+
 
 
 /* =========================================================
@@ -2190,3 +2220,23 @@ if (playerNickname) {
 console.log(
     "⭐ Starkisss Shop New Year 2026 loaded!"
 );
+
+/* =========================================================
+   ПЕРЕХОДЫ С КАРТЫ ОСТРОВОВ
+   ========================================================= */
+
+const islandHomeScreen = document.getElementById("islandHome");
+const gameScreen = document.getElementById("gameScreen");
+const workshopIslandButton = document.getElementById("workshopIsland");
+const winterForestIslandButton = document.getElementById("winterForestIsland");
+
+// Открываем игру из мастерской Старки
+workshopIslandButton.addEventListener("click", () => {
+    islandHomeScreen.classList.add("hidden");
+    gameScreen.classList.remove("hidden");
+});
+
+// Пока Зимний лес закрыт
+winterForestIslandButton.addEventListener("click", () => {
+    alert("❄️ Зимний лес пока закрыт. Сначала загляни в мастерскую Старки!");
+});

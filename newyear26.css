@@ -846,6 +846,34 @@ body {
 }
 
 
+/* Закрытые дни */
+
+.map-day.locked {
+    background: rgba(10, 18, 48, 0.45);
+    border-color: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.55);
+    opacity: 0.7;
+}
+
+/* Статус дня на карте */
+
+.map-status {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+.map-day.completed .map-status {
+    color: #ffe889;
+    opacity: 1;
+}
+
+.map-day.locked .map-status {
+    color: #b9c5e8;
+}
+
+
 .map-star {
     display: block;
 
@@ -1142,4 +1170,401 @@ body {
     text-align: center;
 
     letter-spacing: 0.5px;
+}
+
+/* ================= ISLAND WORLD MAP ================= */
+
+.island-map-card {
+    width: min(1000px, 100%);
+    overflow: hidden;
+}
+
+.island-map-subtitle,
+.island-map-hint {
+    color: #cbd9ff;
+    text-align: center;
+    font-size: 14px;
+}
+
+.island-world {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+        radial-gradient(ellipse at 50% 45%, #344b88 0%, #202e60 45%, #111a3d 100%);
+}
+
+/* Облака за островами */
+
+.floating-clouds {
+    position: absolute;
+    z-index: -1;
+    width: 115%;
+    max-width: none;
+    left: -7%;
+    top: 12%;
+    pointer-events: none;
+    animation: clouds-drift 18s ease-in-out infinite alternate;
+}
+
+/* Острова */
+
+.world-island {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    transition: filter 0.25s ease;
+}
+
+.world-island:hover {
+    filter: brightness(1.12);
+}
+
+.winter-forest {
+    width: 27%;
+    left: 36%;
+    top: 12%;
+    animation: island-float 5s ease-in-out infinite;
+}
+
+.winter-forest img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.25));
+}
+
+.island-label {
+    font-weight: 800;
+    text-shadow: 0 2px 8px #101735;
+}
+
+.island-status {
+    font-size: 12px;
+    color: #d9e4ff;
+    text-shadow: 0 2px 6px #101735;
+}
+
+.mini-island {
+    position: absolute;
+    width: 17%;
+    height: auto;
+    pointer-events: none;
+    animation: island-float 4s ease-in-out infinite;
+}
+
+.mini-island-one {
+    left: 5%;
+    top: 28%;
+}
+
+.mini-island-two {
+    right: 4%;
+    top: 55%;
+    width: 13%;
+    animation-delay: -2s;
+}
+
+/* Мастерская — временная заглушка */
+
+.workshop-island {
+    width: 32%;
+    left: 5%;
+    bottom: 7%;
+    animation: island-float 5.5s ease-in-out infinite;
+    animation-delay: -1.5s;
+}
+
+.workshop-placeholder {
+    font-size: 64px;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.3));
+}
+
+.island-map-hint {
+    margin-bottom: 0;
+}
+
+@keyframes island-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes clouds-drift {
+    from {
+        transform: translateX(-2%);
+    }
+
+    to {
+        transform: translateX(2%);
+    }
+}
+
+@media (max-width: 600px) {
+    .island-world {
+        min-height: 390px;
+    }
+
+    .winter-forest {
+        width: 72%;
+        left: 20%;
+        top: 15%;
+    }
+
+    .workshop-island {
+        width: 42%;
+        left: 2%;
+        bottom: 7%;
+    }
+
+    .workshop-placeholder {
+        font-size: 44px;
+    }
+
+    .island-label {
+        font-size: 12px;
+    }
+
+    .island-status {
+        font-size: 10px;
+    }
+
+    .mini-island {
+        width: 19%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-clouds,
+    .mini-island,
+    .world-island {
+        animation: none;
+    }
+}
+
+/* ================= ЗВЁЗДНАЯ КАРТА МИРА ================= */
+
+.island-home {
+    width: 100%;
+    padding: 24px 0;
+    color: white;
+    overflow: hidden;
+}
+
+.island-home-heading {
+    text-align: center;
+    padding: 0 16px;
+    margin-bottom: 20px;
+}
+
+.island-home-heading h1 {
+    margin-bottom: 8px;
+}
+
+.island-home-heading p {
+    color: #cbd9ff;
+    margin: 0;
+}
+
+.island-world {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 540px;
+    overflow: hidden;
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 20% 25%, #394d83 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 65%, #a5baff 0 1px, transparent 2px),
+        radial-gradient(ellipse at 50% 45%, #283b72, #111832 80%);
+    background-size: 75px 80px, 105px 95px, auto;
+}
+
+.sky-stars {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    color: #dce6ff;
+    font-size: 25px;
+    line-height: 4;
+    letter-spacing: 14px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.world-island {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    border: 0;
+    background: transparent;
+    color: white;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.world-island:hover {
+    filter: brightness(1.2);
+}
+
+.island-emoji {
+    display: grid;
+    place-items: center;
+    width: 100px;
+    height: 75px;
+    font-size: 48px;
+    border-radius: 45% 50% 40% 45%;
+    background: linear-gradient(145deg, #617bb8, #28385f);
+    box-shadow:
+        0 12px 0 -4px #1a2548,
+        0 18px 22px rgba(0, 0, 0, 0.3);
+    animation: island-float 4s ease-in-out infinite;
+}
+
+.winter-forest {
+    width: 25%;
+    left: 37%;
+    top: 8%;
+}
+
+.winter-forest img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.3));
+}
+
+.workshop-island {
+    width: 22%;
+    left: 5%;
+    top: 15%;
+}
+
+.candy-island {
+    width: 22%;
+    left: 8%;
+    top: 57%;
+}
+
+.nebula-island {
+    width: 22%;
+    right: 5%;
+    top: 20%;
+}
+
+.secret-island {
+    width: 22%;
+    right: 8%;
+    top: 59%;
+}
+
+.island-label {
+    max-width: 180px;
+    font-weight: 800;
+    font-size: 14px;
+    text-shadow: 0 2px 7px #090f24;
+}
+
+.island-status {
+    color: #d3ddff;
+    font-size: 11px;
+    text-shadow: 0 2px 5px #090f24;
+}
+
+.island-map-hint {
+    padding: 0 12px;
+    text-align: center;
+    color: #cbd9ff;
+    font-size: 13px;
+}
+
+@keyframes island-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+/* На телефоне карта становится шире экрана */
+
+@media (max-width: 600px) {
+    .island-world {
+        width: 760px;
+        max-width: none;
+        min-height: 480px;
+        border-radius: 0;
+    }
+
+    .island-home {
+        overflow-x: auto;
+        padding-bottom: 12px;
+        scrollbar-color: #7188c4 #182344;
+        scrollbar-width: thin;
+    }
+
+    .island-home-heading {
+        padding: 0 16px;
+    }
+
+    .winter-forest {
+        width: 23%;
+        left: 38%;
+        top: 7%;
+    }
+
+    .winter-forest img {
+        max-height: 150px;
+    }
+
+    .workshop-island {
+        width: 22%;
+        left: 4%;
+        top: 13%;
+    }
+
+    .candy-island {
+        width: 22%;
+        left: 8%;
+        top: 57%;
+    }
+
+    .nebula-island {
+        width: 22%;
+        right: 4%;
+        top: 18%;
+    }
+
+    .secret-island {
+        width: 22%;
+        right: 7%;
+        top: 59%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .island-emoji {
+        animation: none;
+    }
 }

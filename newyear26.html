@@ -51,9 +51,79 @@
 
     <div class="snow-layer"></div>
 
+    
+<!-- ================= MAIN ISLAND MAP ================= -->
+
+
+<!-- ================= MAIN ISLAND MAP ================= -->
+
+<section class="island-home" id="islandHome">
+
+    <div class="island-home-heading">
+        <h1>✨ Мир Старки</h1>
+        <p>Маленькая вселенная больших приключений</p>
+    </div>
+
+    <div class="island-world">
+
+        <!-- Звёздное небо -->
+        <div class="sky-stars">✦　⋆　✧　·　✦　˚　✧　⋆　✦　·　✧</div>
+
+        <!-- 1. Мастерская Старки -->
+        <button class="world-island emoji-island workshop-island"
+                id="workshopIsland" type="button">
+            <span class="island-emoji">🏠</span>
+            <span class="island-label">Мастерская Старки</span>
+            <span class="island-status">✨ Открыто</span>
+        </button>
+
+        <!-- 2. Зимний лес -->
+        <button class="world-island winter-forest"
+                id="winterForestIsland" type="button">
+            <img src="NewYear2026/OstrovLes.png" alt="Зимний лес">
+            <span class="island-label">🌲 Зимний лес</span>
+            <span class="island-status" id="winterForestStatus">
+                🔒 Скоро откроется
+            </span>
+        </button>
+
+        <!-- 3. Долина сладостей -->
+        <button class="world-island emoji-island candy-island"
+                id="candyIsland" type="button">
+            <span class="island-emoji">🍬</span>
+            <span class="island-label">Долина сладостей</span>
+            <span class="island-status">🔒 Скоро</span>
+        </button>
+
+        <!-- 4. Туманность Нокса -->
+        <button class="world-island emoji-island nebula-island"
+                id="nebulaIsland" type="button">
+            <span class="island-emoji">🌌</span>
+            <span class="island-label">Туманность Нокса</span>
+            <span class="island-status">🔒 Скоро</span>
+        </button>
+
+        <!-- 5. Секретный остров -->
+        <button class="world-island emoji-island secret-island"
+                id="secretIsland" type="button">
+            <span class="island-emoji">🌠</span>
+            <span class="island-label">Неизвестный остров</span>
+            <span class="island-status">❔ Секрет</span>
+        </button>
+
+    </div>
+
+    <p class="island-map-hint">
+        Некоторые острова пока скрывают свои секреты…
+    </p>
+
+</section>
+
+
+
     <!-- ================= GAME ================= -->
 
-    <main class="game">
+    <main class="game hidden" id="gameScreen">
 
         <!-- TOP PANEL -->
 
@@ -233,28 +303,82 @@
     </main>
 
 
-    <!-- ================= MAP ================= -->
+    
+<!-- ================= MAP OF ISLANDS ================= -->
 
-    <div
-        class="overlay hidden"
-        id="mapOverlay"
-    >
+<div class="overlay hidden" id="mapOverlay">
 
-        <div class="overlay-card">
+    <div class="overlay-card island-map-card">
 
-            <button class="close-overlay" id="closeMap">
-                ×
+        <button class="close-overlay" id="closeMap">
+            ×
+        </button>
+
+        <h2>✨ Мир Старки</h2>
+
+        <p class="island-map-subtitle">
+            Исследуй острова, находи звёзды и открывай тайны!
+        </p>
+
+        <div class="island-world">
+
+            <!-- Облака -->
+            <img
+                src="NewYear2026/OstrovLesOblaka.png"
+                class="floating-clouds"
+                alt=""
+            >
+
+            <!-- Главный остров: Зимний лес -->
+            <button
+                class="world-island winter-forest"
+                id="winterForestIsland"
+                type="button"
+                aria-label="Зимний лес"
+            >
+                <img
+                    src="NewYear2026/OstrovLes.png"
+                    alt="Зимний лес"
+                >
+                <span class="island-label">🌲 Зимний лес</span>
+                <span class="island-status" id="winterForestStatus">
+                    🔒 Скоро откроется
+                </span>
             </button>
 
-            <h2>🗺️ Путь</h2>
+            <!-- Маленькие парящие островки -->
+            <img
+                src="NewYear2026/OstrovMini.png"
+                class="mini-island mini-island-one"
+                alt=""
+            >
 
-            <div class="map" id="map">
-                <!-- создаётся через JS -->
-            </div>
+            <img
+                src="NewYear2026/OstrovMini.png"
+                class="mini-island mini-island-two"
+                alt=""
+            >
+
+            <!-- Заглушка мастерской -->
+            <button
+                class="world-island workshop-island"
+                id="workshopIsland"
+                type="button"
+            >
+                <span class="workshop-placeholder">🏠</span>
+                <span class="island-label">Мастерская Старки</span>
+                <span class="island-status">✨ Стартовая локация</span>
+            </button>
 
         </div>
 
+        <p class="island-map-hint">
+            Некоторые острова пока скрывают свои секреты…
+        </p>
+
     </div>
+
+</div>
 
 
     <!-- ================= JOURNAL ================= -->

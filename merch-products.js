@@ -99,25 +99,48 @@ function renderOfficialMerch(products) {
 
             <div class="merch-image">
 
-                ${
-                    product.photo_1
+    ${
+        product.photo_1
 
-                        ? `
-                            <img
-                                class="merch-main-image"
-                                src="${product.photo_1}"
-                                alt="${product.title}"
-                            >
-                          `
+            ? `
+                <img
+                    class="merch-main-image"
+                    src="${product.photo_1}"
+                    alt="${product.title}"
+                >
+              `
 
-                        : `
-                            <span>
-                                ФОТО МЕРЧА
-                            </span>
-                          `
-                }
+            : `
+                <span>
+                    ФОТО МЕРЧА
+                </span>
+              `
+    }
 
-            </div>
+</div>
+
+
+<div class="merch-thumbnails">
+
+    ${
+        [product.photo_1, product.photo_2, product.photo_3]
+            .filter(Boolean)
+            .map((photo, index) => `
+                <button
+                    type="button"
+                    class="merch-thumb ${index === 0 ? "active" : ""}"
+                    data-image="${photo}"
+                >
+                    <img
+                        src="${photo}"
+                        alt="Фото ${index + 1}"
+                    >
+                </button>
+            `)
+            .join("")
+    }
+
+</div>
 
 
             <div class="merch-thumbnails">
@@ -425,24 +448,43 @@ function renderFandomMerch(products) {
 
             <div class="merch-image">
 
-                ${
-                    product.photo_1
+    ${
+        product.photo_1
+            ? `
+                <img
+                    class="merch-main-image"
+                    src="${product.photo_1}"
+                    alt="${product.title}"
+                >
+              `
+            : `
+                <span>ФОТО МЕРЧА</span>
+              `
+    }
 
-                        ? `
-                            <img
-                                src="${product.photo_1}"
-                                alt="${product.title}"
-                            >
-                          `
+</div>
 
-                        : `
-                            <span>
-                                ФОТО МЕРЧА
-                            </span>
-                          `
-                }
+<div class="merch-thumbnails">
 
-            </div>
+    ${
+        [product.photo_1, product.photo_2, product.photo_3]
+            .filter(Boolean)
+            .map((photo, index) => `
+                <button
+                    type="button"
+                    class="merch-thumb ${index === 0 ? "active" : ""}"
+                    data-image="${photo}"
+                >
+                    <img
+                        src="${photo}"
+                        alt="Фото ${index + 1}"
+                    >
+                </button>
+            `)
+            .join("")
+    }
+
+</div>
 
 
             <div class="merch-info">
@@ -529,12 +571,38 @@ function renderFandomMerch(products) {
         `;
 
 
-        fandomMerchProducts
+                fandomMerchProducts
             .appendChild(card);
 
-    });
+        // ПЕРЕКЛЮЧЕНИЕ ФОТО
 
-}
+        const mainImage =
+            card.querySelector(".merch-main-image");
+
+        const thumbnails =
+            card.querySelectorAll(".merch-thumb");
+
+        thumbnails.forEach(thumbnail => {
+
+            thumbnail.addEventListener("click", () => {
+
+                if (!mainImage) return;
+
+                mainImage.src = thumbnail.dataset.image;
+
+                thumbnails.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                thumbnail.classList.add("active");
+
+            });
+
+        });
+
+    }); 
+
+} 
 
 
 
